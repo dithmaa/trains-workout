@@ -19,7 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "SF Pro Display";
-  background-color: #fff;
+  background-color: #f1f1f1;
 }
 .App {
   padding-bottom: 70px;
@@ -168,6 +168,8 @@ img {
   right: 0;
   z-index: 9999;
   user-select: none;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   .container {
     display: flex;
     justify-content: center;
