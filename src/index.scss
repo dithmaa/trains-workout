@@ -21,6 +21,9 @@ body {
   font-family: "SF Pro Display";
   background-color: #f1f1f1;
 }
+a {
+  text-decoration: none;
+}
 .App {
   padding-bottom: 100px;
 }
@@ -67,132 +70,5 @@ img {
     font-size: 17px;
     font-weight: 900;
     padding-left: 32px;
-  }
-}
-
-.train-card {
-  position: relative;
-  color: #fff;
-  padding: 62px 30px;
-  border-radius: 25px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  max-height: 250px;
-  margin: 20px 0;
-  padding-top: 86px;
-  user-select: none;
-  background-color: #bcbcbc;
-  &-today {
-    padding-top: 62px;
-    .train-card__title {
-      font-size: 24px;
-    }
-  }
-
-  &.hasOrnament {
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0px;
-      min-height: 100%;
-      background-position-y: 54px;
-      background-position-x: right;
-      background-repeat: no-repeat;
-      left: 0;
-      right: 0;
-      background-image: url("./assets/img/train-cards/ornament.svg");
-      z-index: 4;
-    }
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(0deg, #232628 0%, rgba(0, 0, 0, 0) 100%);
-    z-index: 4;
-  }
-  &__title {
-    font-size: 17px;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 4px;
-    margin-top: 30px;
-    font-family: "BenzinBold", sans-serif;
-    padding-right: 20px;
-  }
-  p {
-    font-size: 17px;
-    margin-bottom: 4px;
-    margin-top: 4px;
-  }
-  * {
-    z-index: 5;
-    position: relative;
-  }
-  &__duration {
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    color: #ccd1d9;
-    margin-top: 4px;
-
-    img {
-      width: 14px;
-      margin-right: 5px;
-    }
-  }
-  &__img {
-    position: absolute;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    img {
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-}
-
-.menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-  user-select: none;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  .container {
-    display: flex;
-    justify-content: center;
-    padding: 25px 0;
-  }
-  background: #fff;
-  &__item {
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 20px;
-    opacity: 0.5;
-    cursor: pointer;
-    transition: 0.25s ease opacity;
-    &:active {
-      opacity: 1;
-    }
-    &.active {
-      opacity: 1;
-    }
-  }
-  img {
-    width: 20px;
   }
 }

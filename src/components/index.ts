@@ -1,3 +1,3 @@
-export { TrainCard } from "./TrainCard";
-export { Trains } from "./Trains";
-export { Menu } from "./Menu";
+export { TrainCard } from "./TrainCard/TrainCard";
+export { Trains } from "./Trains/Trains";
+export { Menu } from "./Menu/Menu";
