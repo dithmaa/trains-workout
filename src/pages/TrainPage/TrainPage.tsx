@@ -13,16 +13,19 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
 
   return (
     <div className="train-page">
-      <div className="container container-sm">
+      <div className="container">
         <TopNav trainDate={trainDateString} />
-        <div className="train-page__content">
-          <h2>{trainData[Number(id)].title}</h2>
-          <div className="train-page__duration">
-            <img src={timeIcon} alt="time" />
-            <span>{trainData[Number(id)].duration}</span>
-          </div>
+        <div className="train-page__picture">
+          <img src={trainData[Number(id)].image} alt="" />
         </div>
         <div className="exercises">
+          <div className="exercises__top">
+            <h2>{trainData[Number(id)].title}</h2>
+            <div className="train-page__duration">
+              <img src={timeIcon} alt="time" />
+              <span>{trainData[Number(id)].duration}</span>
+            </div>
+          </div>
           <div className="exercises__item">
             <div className="exercises__item_img">
               {/* <img src="" alt="" /> */}
