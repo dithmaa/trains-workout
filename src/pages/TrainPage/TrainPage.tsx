@@ -31,39 +31,40 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
           </div>
         )}
 
-        {!isExercisesPage && (
-          <div
-            className={classNames("exercises", {
-              "no-image": trainPicture === "none",
-            })}
-          >
-            <div className="exercises__top">
-              <h2>{trainData[Number(id)].title}</h2>
-              <div className="train-page__duration">
-                <img src={timeIcon} alt="time" />
-                <span>{trainData[Number(id)].duration}</span>
-              </div>
+        <div
+          className={classNames("exercises", {
+            "no-image": trainPicture === "none",
+          })}
+        >
+          <div className="exercises__top">
+            <h2>{trainData[Number(id)].title}</h2>
+            <div className="train-page__duration">
+              <img src={timeIcon} alt="time" />
+              <span>{trainData[Number(id)].duration}</span>
             </div>
-
-            <Link to="exercise-page" className="exercises__item">
-              <div className="exercises__item_img">
-                <img src={exercisesImg1} alt="" />
-              </div>
-              <h4 className="exercises__item_title">Скручивания</h4>
-              <p>
-                Приводим в тонус приводящие мышцы, а также мускулатуру задней
-                части бедер 3 похода по 10 повторений
-              </p>
-              <div className="train-page__duration">
-                <img src={timeIcon} alt="time" />
-                <span>{trainData[Number(id)].duration}</span>
-              </div>
-            </Link>
           </div>
-        )}
 
-        {/* Страница с упражнениями */}
-        <Outlet />
+          {!isExercisesPage ? (
+            <div className="exercises__wrapper">
+              <Link to="exercise-page" className="exercises__item">
+                <div className="exercises__item_img">
+                  <img src={exercisesImg1} alt="" />
+                </div>
+                <h4 className="exercises__item_title">Скручивания</h4>
+                <p>
+                  Приводим в тонус приводящие мышцы, а также мускулатуру задней
+                  части бедер 3 похода по 10 повторений
+                </p>
+                <div className="train-page__duration">
+                  <img src={timeIcon} alt="time" />
+                  <span>{trainData[Number(id)].duration}</span>
+                </div>
+              </Link>
+            </div>
+          ) : (
+            <Outlet />
+          )}
+        </div>
       </div>
     </div>
   );
