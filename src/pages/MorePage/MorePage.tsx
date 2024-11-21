@@ -8,6 +8,11 @@ export const MorePage = () => {
         <div className="more-page__subscribtion_title">Подписка</div>
         <div className="more-page__subscribtion_days">30 дней</div>
       </div>
+      <ul className="more-page__menu">
+        <li className="more-page__menu_item">Настроить оборудование</li>
+        <li className="more-page__menu_item">Написать в поддержку</li>
+        <li className="more-page__menu_item">Написать тренеру</li>
+      </ul>
     </div>
   );
 };
