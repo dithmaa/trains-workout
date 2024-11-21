@@ -4,7 +4,7 @@ export const TrainsPage = () => {
   // Проверка: если путь "/own", скрыть остальные элементы
   return (
     <div className="container">
-      <Menu />
+      <Menu active={0} />
       <Trains />
     </div>
   );

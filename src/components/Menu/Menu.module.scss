@@ -10,6 +10,9 @@
 
   background: #fff;
   &__item {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
     user-select: none;
     display: flex;
     flex-direction: column;
@@ -27,6 +30,7 @@
   }
   img {
     width: 20px;
+    margin-bottom: 5px;
   }
   :global {
     .container {

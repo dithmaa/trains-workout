@@ -1,18 +1,32 @@
 import userIcon from "../../assets/img/menu/user-icon.svg";
 import moreIcon from "../../assets/img/menu/more-icon.svg";
 import styles from "./Menu.module.scss";
-export const Menu = () => {
+import classNames from "classnames";
+import { Link } from "react-router-dom";
+
+interface MenuProps {
+  active: number;
+}
+export const Menu: React.FC<MenuProps> = ({ active }) => {
+  const menuTitles = ["Тренировки", "Еще"];
+  const menuIcons = [userIcon, moreIcon];
+  const menuLinks = ["/", "/more"];
   return (
     <div className={styles.root}>
       <div className="container">
-        <div className={styles.root__item + " " + styles.root__item__active}>
-          <img src={userIcon} alt="user icon" />
-          <span>Тренировки</span>
-        </div>
-        <div className={styles.root__item}>
-          <img src={moreIcon} alt="more icon" />
-          <span>Еще</span>
-        </div>
+        {menuTitles.map((item, key) => {
+          return (
+            <Link
+              to={menuLinks[key]}
+              className={classNames(styles.root__item, {
+                [styles.root__item__active]: active === key,
+              })}
+            >
+              <img src={menuIcons[key]} alt="user icon" />
+              <span>{item}</span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

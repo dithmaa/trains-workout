@@ -186,3 +186,23 @@ img {
     font-size: 17px;
   }
 }
+
+.more-page {
+  padding-top: 20px;
+  &__subscribtion {
+    display: flex;
+    justify-content: space-between;
+    background-color: #efedee;
+    padding: 39px 20px;
+    border-radius: 30px;
+    &_title {
+      font-family: "BenzinBold", sans-serif;
+      color: #362f41;
+      font-size: 17px;
+    }
+    &_days {
+      color: #aab2bd;
+      font-size: 16px;
+    }
+  }
+}
