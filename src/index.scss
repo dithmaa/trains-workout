@@ -189,6 +189,17 @@ img {
 
 .more-page {
   padding-top: 20px;
+  &__menu {
+    list-style: none;
+    padding-left: 0;
+    li {
+      padding: 31px 22px;
+      border-bottom: 1px solid #0000001f;
+      font-size: 16px;
+      font-weight: 400;
+      color: #362f41;
+    }
+  }
   &__subscribtion {
     display: flex;
     justify-content: space-between;
