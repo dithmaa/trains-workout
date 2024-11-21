@@ -117,6 +117,12 @@ img {
   }
   &__item {
     margin: 25px 0;
+    display: inline-block;
+    transition: 0.25s ease opacity;
+    cursor: pointer;
+    &:active {
+      opacity: 0.8;
+    }
     &_img {
       height: 124px;
       background-color: #e0e0e0;
