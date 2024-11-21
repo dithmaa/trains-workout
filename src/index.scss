@@ -105,6 +105,9 @@ img {
   padding-top: 10px;
   background-color: #f5f7fa;
   border-radius: 30px;
+  &.no-image {
+    margin-top: 0;
+  }
   &__item {
     margin: 25px 0;
     &_img {

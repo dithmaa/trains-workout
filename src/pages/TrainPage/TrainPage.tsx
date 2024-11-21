@@ -3,6 +3,7 @@ import { TopNav } from "../../components";
 import { trainData } from "../../data/trains";
 import timeIcon from "../../assets/img/train-cards/time-icon.svg";
 import exercisesImg1 from "../../assets/img/exercises/1.jpg";
+import classNames from "classnames";
 
 interface TrainPageProps {}
 
@@ -10,15 +11,23 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const { id } = useParams();
 
   const trainDateString = trainData[Number(id)].dateTitle;
+  const trainPicture = trainData[Number(id)].image;
 
   return (
     <div className="train-page">
       <div className="container">
         <TopNav trainDate={trainDateString} />
-        <div className="train-page__picture">
-          <img src={trainData[Number(id)].image} alt="" />
-        </div>
-        <div className="exercises">
+        {trainPicture !== "none" && (
+          <div className="train-page__picture">
+            <img src={trainPicture} alt="" />
+          </div>
+        )}
+
+        <div
+          className={classNames("exercises", {
+            "no-image": trainPicture === "none",
+          })}
+        >
           <div className="exercises__top">
             <h2>{trainData[Number(id)].title}</h2>
             <div className="train-page__duration">
