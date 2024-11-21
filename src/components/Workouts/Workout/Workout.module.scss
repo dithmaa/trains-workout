@@ -1,0 +1,32 @@
+.root {
+  margin: 40px 0;
+  &__text {
+    padding-left: 13px;
+    font-size: 15px;
+  }
+  &__content {
+    align-items: center;
+    display: flex;
+  }
+  &__picture {
+    min-width: 152px;
+    height: 125px;
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+    img {
+      width: 130%;
+      height: 130%;
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__title {
+    font-family: "BenzinBold", sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+  }
+}

@@ -1,17 +1,16 @@
-import { Outlet, Link, useParams, useLocation } from "react-router-dom";
-import { TopNav } from "../../components";
-import { trainData } from "../../data/trains";
-import timeIcon from "../../assets/img/train-cards/time-icon.svg";
-import exercisesImg1 from "../../assets/img/exercises/1.jpg";
-import classNames from "classnames";
 import React from "react";
+import { Outlet, useParams, useLocation } from "react-router-dom";
+import { ExercisesTop, TopNav } from "../../components";
+import { trainData } from "../../data/trains";
+import { Exercises } from "../../components/Exercises/Exercises";
+import classNames from "classnames";
 
 interface TrainPageProps {}
 
 export const TrainPage: React.FC<TrainPageProps> = () => {
   const { id } = useParams();
   const location = useLocation();
-  const isExercisesPage =
+  const isExercisePage =
     location.pathname === `/train-page/${id}/exercise-page`;
 
   const trainDateString = trainData[Number(id)].dateTitle;
@@ -23,53 +22,19 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   return (
     <div className="train-page">
       <div className="container">
-        <TopNav trainDate={trainDateString} />
-
+        <TopNav trainDate={trainDateString} id={Number(id)} />
         {trainPicture !== "none" && (
           <div className="train-page__picture">
             <img src={trainPicture} alt="" />
           </div>
         )}
-
         <div
           className={classNames("exercises", {
             "no-image": trainPicture === "none",
           })}
         >
-          <div className="exercises__top">
-            <h2>{trainData[Number(id)].title}</h2>
-            {!isExercisesPage ? (
-              <div className="train-page__duration">
-                <img src={timeIcon} alt="time" />
-                <span>{trainData[Number(id)].duration}</span>
-              </div>
-            ) : (
-              <p style={{ marginTop: "0px" }}>
-                {trainData[Number(id)].description}
-              </p>
-            )}
-          </div>
-
-          {!isExercisesPage ? (
-            <div className="exercises__wrapper">
-              <Link to="exercise-page" className="exercises__item">
-                <div className="exercises__item_img">
-                  <img src={exercisesImg1} alt="" />
-                </div>
-                <h4 className="exercises__item_title">Скручивания</h4>
-                <p>
-                  Приводим в тонус приводящие мышцы, а также мускулатуру задней
-                  части бедер 3 похода по 10 повторений
-                </p>
-                <div className="train-page__duration">
-                  <img src={timeIcon} alt="time" />
-                  <span>{trainData[Number(id)].duration}</span>
-                </div>
-              </Link>
-            </div>
-          ) : (
-            <Outlet />
-          )}
+          <ExercisesTop isExercisePage={isExercisePage} id={Number(id)} />
+          {!isExercisePage ? <Exercises id={Number(id)} /> : <Outlet />}
         </div>
       </div>
     </div>

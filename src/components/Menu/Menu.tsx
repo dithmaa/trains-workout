@@ -17,6 +17,7 @@ export const Menu: React.FC<MenuProps> = ({ active }) => {
         {menuTitles.map((item, key) => {
           return (
             <Link
+              key={key}
               to={menuLinks[key]}
               className={classNames(styles.root__item, {
                 [styles.root__item__active]: active === key,

@@ -17,6 +17,7 @@ export const Trains = () => {
             describtion={train.description}
             duration={train.duration}
             title={train.title}
+            key={index}
           />
         </div>
       ))}

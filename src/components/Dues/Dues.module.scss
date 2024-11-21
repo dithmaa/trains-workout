@@ -1,0 +1,26 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #efedee;
+  padding: 39px 20px;
+  border-radius: 30px;
+  transition: 0.25s ease opacity;
+  &:active {
+    opacity: 0.6;
+  }
+  &__title {
+    font-family: "BenzinBold", sans-serif;
+    color: #362f41;
+    font-size: 17px;
+  }
+  &__days {
+    color: #aab2bd;
+    font-size: 16px;
+    display: flex;
+    img {
+      width: 9px;
+      margin-left: 13px;
+    }
+  }
+}

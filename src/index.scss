@@ -98,6 +98,15 @@ img {
   }
 }
 
+.workouts {
+  margin-top: 30px;
+  border-top: 1px solid #0000000d;
+}
+
+.more-page {
+  padding-top: 20px;
+}
+
 .exercises {
   position: relative;
   margin-top: -100px;
@@ -105,115 +114,4 @@ img {
   padding-top: 10px;
   background-color: #f5f7fa;
   border-radius: 30px;
-  &.no-image {
-    margin-top: 0;
-  }
-  &__top {
-    h2 {
-      font-family: "BenzinBold", sans-serif;
-      font-size: 17px;
-      font-weight: 900;
-    }
-  }
-  &__item {
-    margin: 25px 0;
-    display: inline-block;
-    transition: 0.25s ease opacity;
-    cursor: pointer;
-    &:active {
-      opacity: 0.8;
-    }
-    &_img {
-      height: 124px;
-      background-color: #e0e0e0;
-      border-radius: 10px;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    &_title {
-      margin-top: 14px;
-      margin-bottom: 3px;
-      font-size: 17px;
-      font-weight: 500;
-      color: #1c1c1e;
-    }
-    p {
-      margin-top: 1px;
-      margin-bottom: 9px;
-      font-size: 15px;
-      color: #1c1c1e;
-    }
-  }
-}
-.workouts {
-  margin-top: 30px;
-  border-top: 1px solid #0000000d;
-}
-
-.workout {
-  margin: 40px 0;
-  &__text {
-    padding-left: 13px;
-    font-size: 15px;
-  }
-  &__content {
-    align-items: center;
-    display: flex;
-  }
-  &__picture {
-    min-width: 152px;
-    height: 125px;
-    overflow: hidden;
-    border-radius: 15px;
-    position: relative;
-    img {
-      width: 130%;
-      height: 130%;
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  &__title {
-    font-family: "BenzinBold", sans-serif;
-    font-weight: 900;
-    font-size: 17px;
-  }
-}
-
-.more-page {
-  padding-top: 20px;
-  &__menu {
-    list-style: none;
-    padding-left: 0;
-    li {
-      padding: 31px 22px;
-      border-bottom: 1px solid #0000001f;
-      font-size: 16px;
-      font-weight: 400;
-      color: #362f41;
-    }
-  }
-  &__subscribtion {
-    display: flex;
-    justify-content: space-between;
-    background-color: #efedee;
-    padding: 39px 20px;
-    border-radius: 30px;
-    &_title {
-      font-family: "BenzinBold", sans-serif;
-      color: #362f41;
-      font-size: 17px;
-    }
-    &_days {
-      color: #aab2bd;
-      font-size: 16px;
-    }
-  }
 }
