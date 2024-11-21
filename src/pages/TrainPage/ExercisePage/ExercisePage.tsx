@@ -22,8 +22,7 @@ export default function ExercisePage() {
               <img src={workoutImg1} alt="" />
             </div>
             <div className="workout__text">
-              Найдете баланс в тренировках — найдете его в жизни. В этом поможет
-              ком..
+              Короткое, но интенсивное занятие. Всего за 10 минут вы мощн...
             </div>
           </div>
         </div>
@@ -34,8 +33,7 @@ export default function ExercisePage() {
               <img src={workoutImg1} alt="" />
             </div>
             <div className="workout__text">
-              Найдете баланс в тренировках — найдете его в жизни. В этом поможет
-              ком..
+              Барре — это не только эстетичные движение, но и интенсивные на...
             </div>
           </div>
         </div>

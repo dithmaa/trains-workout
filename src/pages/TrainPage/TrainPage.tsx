@@ -38,10 +38,16 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
         >
           <div className="exercises__top">
             <h2>{trainData[Number(id)].title}</h2>
-            <div className="train-page__duration">
-              <img src={timeIcon} alt="time" />
-              <span>{trainData[Number(id)].duration}</span>
-            </div>
+            {!isExercisesPage ? (
+              <div className="train-page__duration">
+                <img src={timeIcon} alt="time" />
+                <span>{trainData[Number(id)].duration}</span>
+              </div>
+            ) : (
+              <p style={{ marginTop: "0px" }}>
+                {trainData[Number(id)].description}
+              </p>
+            )}
           </div>
 
           {!isExercisesPage ? (
