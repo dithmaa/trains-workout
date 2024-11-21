@@ -4,6 +4,7 @@ import { trainData } from "../../data/trains";
 import timeIcon from "../../assets/img/train-cards/time-icon.svg";
 import exercisesImg1 from "../../assets/img/exercises/1.jpg";
 import classNames from "classnames";
+import React from "react";
 
 interface TrainPageProps {}
 
@@ -13,6 +14,9 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const trainDateString = trainData[Number(id)].dateTitle;
   const trainPicture = trainData[Number(id)].image;
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="train-page">
       <div className="container">

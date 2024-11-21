@@ -108,6 +108,13 @@ img {
   &.no-image {
     margin-top: 0;
   }
+  &__top {
+    h2 {
+      font-family: "BenzinBold", sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+    }
+  }
   &__item {
     margin: 25px 0;
     &_img {
@@ -123,11 +130,16 @@ img {
     }
     &_title {
       margin-top: 14px;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
+      font-size: 17px;
+      font-weight: 500;
+      color: #1c1c1e;
     }
     p {
-      margin-top: 7px;
-      margin-bottom: 7px;
+      margin-top: 1px;
+      margin-bottom: 9px;
+      font-size: 15px;
+      color: #1c1c1e;
     }
   }
 }
