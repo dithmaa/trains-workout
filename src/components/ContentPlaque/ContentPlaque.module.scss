@@ -5,6 +5,11 @@
   background-color: #efedee;
   border-radius: 30px;
   padding: 34px 20px;
+  transition: 0.25s ease opacity;
+  cursor: pointer;
+  &:active {
+    opacity: 0.6;
+  }
   &__left {
     display: flex;
     align-items: center;
