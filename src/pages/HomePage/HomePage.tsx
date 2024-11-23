@@ -3,6 +3,7 @@ import {
   DayTrackerPlaque,
   Menu,
   Plaque,
+  QuizPlaque,
 } from "../../components";
 
 export const HomePage = () => {
@@ -12,6 +13,8 @@ export const HomePage = () => {
       <Plaque title={"📈 Ваш прогресс"} />
       <DayTrackerPlaque />
       <ContentPlaque />
+      <h2 className="title">Цель недели</h2>
+      <QuizPlaque />
     </div>
   );
 };

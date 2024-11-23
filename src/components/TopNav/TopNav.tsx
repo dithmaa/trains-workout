@@ -9,7 +9,7 @@ export const TopNav: React.FC<TopNavProps> = ({ trainDate, id }) => {
   const location = useLocation();
   const isExercisePage =
     location.pathname === `/train-page/${id}/exercise-page`;
-  const linkPath = isExercisePage ? `/train-page/${id}` : `/`;
+  const linkPath = isExercisePage ? `/train-page/${id}` : `/trains`;
   return (
     <div className={style.root}>
       <Link to={linkPath} className={style.root__arrow}>
