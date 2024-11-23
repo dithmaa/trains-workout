@@ -4,7 +4,7 @@ export const HomePage = () => {
   return (
     <div className="home-page">
       <Menu active={0} />
-      <Plaque title={"Подписка"} />
+      <Plaque title={"📈 Ваш прогресс"} />
       <DayTrackerPlaque />
     </div>
   );

@@ -9,3 +9,4 @@ export { Workouts } from "./Workouts/Workouts";
 export { Workout } from "./Workouts/Workout/Workout";
 export { ExerciseCard } from "./Exercises/ExerciseCard/ExerciseCard";
 export { DayTrackerPlaque } from "./DayTrackerPlaque/DayTrackerPlaque";
+export { Progressbar } from "./Progressbar/Progressbar";

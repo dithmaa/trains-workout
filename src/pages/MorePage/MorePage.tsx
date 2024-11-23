@@ -4,7 +4,7 @@ export const MorePage = () => {
   return (
     <div className="more-page">
       <Menu active={2} />
-      <Plaque title={"Подписка"} />
+      <Plaque title={"Подписка"} text="30 дней" />
       <MorePageMenu />
     </div>
   );
