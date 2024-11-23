@@ -1,4 +1,9 @@
-import { DayTrackerPlaque, Menu, Plaque } from "../../components";
+import {
+  ContentPlaque,
+  DayTrackerPlaque,
+  Menu,
+  Plaque,
+} from "../../components";
 
 export const HomePage = () => {
   return (
@@ -6,6 +11,7 @@ export const HomePage = () => {
       <Menu active={0} />
       <Plaque title={"📈 Ваш прогресс"} />
       <DayTrackerPlaque />
+      <ContentPlaque />
     </div>
   );
 };
