@@ -1,5 +1,6 @@
 import userIcon from "../../assets/img/menu/user-icon.svg";
 import moreIcon from "../../assets/img/menu/more-icon.svg";
+import homeIcon from "../../assets/img/menu/home-icon.svg";
 import styles from "./Menu.module.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
@@ -8,9 +9,9 @@ interface MenuProps {
   active: number;
 }
 export const Menu: React.FC<MenuProps> = ({ active }) => {
-  const menuTitles = ["Тренировки", "Еще"];
-  const menuIcons = [userIcon, moreIcon];
-  const menuLinks = ["/", "/more"];
+  const menuTitles = ["Главная", "Тренировки", "Еще"];
+  const menuIcons = [homeIcon, userIcon, moreIcon];
+  const menuLinks = ["/", "/trains", "/more"];
   return (
     <div className={styles.root}>
       <div className="container">
