@@ -14,3 +14,5 @@ export { ContentPlaque } from "./ContentPlaque/ContentPlaque";
 export { QuizPlaque } from "./QuizPlaque/QuizPlaque";
 export { Equipments } from "./Equipments/Equipments";
 export { DumbbellSizes } from "./DumbbellSizes/DumbbellSizes";
+export { BarbellSizes } from "./BarbellSizes/BarbellSizes";
+export { GriphSizes } from "./GriphSizes/GriphSizes";

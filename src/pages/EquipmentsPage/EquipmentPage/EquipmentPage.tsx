@@ -1,5 +1,10 @@
 import { useLocation } from "react-router-dom";
-import { DumbbellSizes, TopNav } from "../../../components";
+import {
+  BarbellSizes,
+  DumbbellSizes,
+  GriphSizes,
+  TopNav,
+} from "../../../components";
 interface EquipmentPageProps {
   title: string;
   topNavTitle: string;
@@ -17,6 +22,8 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
       <TopNav title={topNavTitle} id={0} />
       <h2 className="main-title">{title}</h2>
       {pageName === "dumbbells" && <DumbbellSizes />}
+      {pageName === "barbells" && <BarbellSizes />}
+      {pageName === "barbells" && <GriphSizes />}
     </div>
   );
 };
