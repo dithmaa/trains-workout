@@ -2,7 +2,6 @@ import { ReactComponent as UserIcon } from "../../assets/img/menu/user-icon.svg"
 import { ReactComponent as MoreIcon } from "../../assets/img/menu/more-icon.svg";
 import { ReactComponent as HomeIcon } from "../../assets/img/menu/home-icon.svg";
 import styles from "./Menu.module.scss";
-import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 interface MenuProps {
