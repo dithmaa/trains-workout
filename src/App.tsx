@@ -1,4 +1,4 @@
-import { HomePage, TrainPage, TrainsPage } from "./pages/";
+import { EquipmentPage, HomePage, TrainPage, TrainsPage } from "./pages/";
 import { MorePage } from "./pages/";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -14,6 +14,7 @@ function App() {
           </Route>
           <Route path="/more" element={<MorePage />} />
           <Route path="/trains" element={<TrainsPage />} />
+          <Route path="/equipments" element={<EquipmentPage />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Router>

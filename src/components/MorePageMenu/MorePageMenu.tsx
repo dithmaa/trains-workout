@@ -1,16 +1,17 @@
 import styles from "./MorePageMenu.module.scss";
 import { ReactComponent as RightArrow } from "../../assets/img/right-arrow.svg";
+import { Link } from "react-router-dom";
 export const MorePageMenu = () => {
   return (
     <ul className={styles.root}>
       <li className={styles.root__item}>
-        <a href="#">
+        <Link to="/equipments">
           <span>
             <span className={styles.root__icon}>⚙️</span>
             <span>Настроить оборудование</span>
           </span>
           <RightArrow />
-        </a>
+        </Link>
       </li>
       <li className={styles.root__item}>
         <a href="#">

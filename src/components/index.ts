@@ -12,3 +12,4 @@ export { DayTrackerPlaque } from "./DayTrackerPlaque/DayTrackerPlaque";
 export { Progressbar } from "./Progressbar/Progressbar";
 export { ContentPlaque } from "./ContentPlaque/ContentPlaque";
 export { QuizPlaque } from "./QuizPlaque/QuizPlaque";
+export { Equipments } from "./Equipments/Equipments";
