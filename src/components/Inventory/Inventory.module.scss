@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 0 15px;
   &_active {
     div {
       border: 3px solid #01bb16;
