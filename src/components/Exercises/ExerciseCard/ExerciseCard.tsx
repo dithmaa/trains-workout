@@ -1,5 +1,5 @@
 import exercisesImg1 from "../../../assets/img/exercises/1.jpg";
-import timeIcon from "../../../assets/img/train-cards/time-icon.svg";
+import { ReactComponent as TimeIcon } from "../../../assets/img/train-cards/time-icon.svg";
 import { trainData } from "../../../data/trains";
 import { Link } from "react-router-dom";
 import styles from "./ExerciseCard.module.scss";
@@ -19,7 +19,7 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({ id }) => {
         бедер 3 похода по 10 повторений
       </p>
       <div className="train-page__duration">
-        <img src={timeIcon} alt="time" />
+        <TimeIcon />
         <span>{trainData[Number(id)].duration}</span>
       </div>
     </Link>

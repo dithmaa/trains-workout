@@ -1,6 +1,6 @@
 import style from "./ContentPlaque.module.scss";
-import rightArrow from "../../assets/img/right-arrow.svg";
-import userpicture from "../../assets/img/plaque/userpic.png";
+import { ReactComponent as RightArrow } from "../../assets/img/right-arrow.svg";
+import trainerPicture from "../../assets/img/plaque/userpic.png";
 import { Link } from "react-router-dom";
 
 export const ContentPlaque = () => {
@@ -8,7 +8,7 @@ export const ContentPlaque = () => {
     <Link to="/" className={style.root}>
       <div className={style.root__left}>
         <div className={style.root__img}>
-          <img src={userpicture} alt="" />
+          <img src={trainerPicture} alt="" />
         </div>
         <div className={style.root__content}>
           <div className={style.root__title}>Выбрать тренера</div>
@@ -18,7 +18,7 @@ export const ContentPlaque = () => {
         </div>
       </div>
       <div className={style.root__arrow}>
-        <img src={rightArrow} alt="" />
+        <RightArrow />
       </div>
     </Link>
   );

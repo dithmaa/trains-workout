@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import leftArrow from "../../assets/img/train-cards/left-arrow.svg";
-import timeIcon from "../../assets/img/train-cards/time-icon.svg";
+import { ReactComponent as LeftArrow } from "../../assets/img/train-cards/left-arrow.svg";
+import { ReactComponent as TimeIcon } from "../../assets/img/train-cards/time-icon.svg";
 import styles from "./TrainCard.module.scss";
 import { Link } from "react-router-dom";
 
@@ -37,12 +37,12 @@ export const TrainCard: React.FC<TrainCardProps> = ({
       <div className={styles.root__title}>{title}</div>
       <p>{describtion}</p>
       <div className={styles.root__duration}>
-        <img src={timeIcon} alt="time" />
+        <TimeIcon />
         <span>{duration}</span>
       </div>
       {index === 0 && (
         <div className={styles.root__btn + " main-btn"}>
-          <img src={leftArrow} alt="arrow" />
+          <LeftArrow />
           <span>Начать</span>
         </div>
       )}

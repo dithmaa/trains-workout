@@ -1,5 +1,5 @@
 import style from "./TopNav.module.scss";
-import backArrow from "../../assets/img/back-arrow.svg";
+import { ReactComponent as BackArrow } from "../../assets/img/back-arrow.svg";
 import { Link, useLocation } from "react-router-dom";
 interface TopNavProps {
   trainDate: string;
@@ -13,7 +13,7 @@ export const TopNav: React.FC<TopNavProps> = ({ trainDate, id }) => {
   return (
     <div className={style.root}>
       <Link to={linkPath} className={style.root__arrow}>
-        <img src={backArrow} alt="Стрелка назад" />
+        <BackArrow />
       </Link>
       <div className={style.root__title}>{trainDate}</div>
       <div style={{ opacity: 0, userSelect: "none" }}>Right S</div>

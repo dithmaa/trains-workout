@@ -1,5 +1,5 @@
 import styles from "./Plaque.module.scss";
-import rightArrow from "../../assets/img/right-arrow.svg";
+import { ReactComponent as RightArrow } from "../../assets/img/right-arrow.svg";
 import { Link } from "react-router-dom";
 interface PlaqueProps {
   title: string;
@@ -12,8 +12,7 @@ export const Plaque: React.FC<PlaqueProps> = ({ title, text, link = "" }) => {
       <div className={styles.root__title}>{title}</div>
       <div className={styles.root__days}>
         <span>{text}</span>
-
-        <img src={rightArrow} alt="right-arrow" />
+        <RightArrow />
       </div>
     </Link>
   );

@@ -1,6 +1,6 @@
-import userIcon from "../../assets/img/menu/user-icon.svg";
-import moreIcon from "../../assets/img/menu/more-icon.svg";
-import homeIcon from "../../assets/img/menu/home-icon.svg";
+import { ReactComponent as UserIcon } from "../../assets/img/menu/user-icon.svg";
+import { ReactComponent as MoreIcon } from "../../assets/img/menu/more-icon.svg";
+import { ReactComponent as HomeIcon } from "../../assets/img/menu/home-icon.svg";
 import styles from "./Menu.module.scss";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ interface MenuProps {
 }
 export const Menu: React.FC<MenuProps> = ({ active }) => {
   const menuTitles = ["Главная", "Тренировки", "Еще"];
-  const menuIcons = [homeIcon, userIcon, moreIcon];
+  const menuIcons = [<HomeIcon />, <UserIcon />, <MoreIcon />];
   const menuLinks = ["/", "/trains", "/more"];
   return (
     <div className={styles.root}>
@@ -24,7 +24,7 @@ export const Menu: React.FC<MenuProps> = ({ active }) => {
                 [styles.root__item__active]: active === key,
               })}
             >
-              <img src={menuIcons[key]} alt="user icon" />
+              {menuIcons[key]}
               <span>{item}</span>
             </Link>
           );

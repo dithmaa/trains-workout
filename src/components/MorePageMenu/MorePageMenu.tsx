@@ -1,5 +1,5 @@
 import styles from "./MorePageMenu.module.scss";
-import rightArrow from "../../assets/img/right-arrow.svg";
+import { ReactComponent as RightArrow } from "../../assets/img/right-arrow.svg";
 export const MorePageMenu = () => {
   return (
     <ul className={styles.root}>
@@ -9,7 +9,7 @@ export const MorePageMenu = () => {
             <span className={styles.root__icon}>⚙️</span>
             <span>Настроить оборудование</span>
           </span>
-          <img src={rightArrow} alt="" />
+          <RightArrow />
         </a>
       </li>
       <li className={styles.root__item}>
@@ -19,7 +19,7 @@ export const MorePageMenu = () => {
             <span>Написать в поддержку</span>
           </span>
 
-          <img src={rightArrow} alt="" />
+          <RightArrow />
         </a>
       </li>
       <li className={styles.root__item}>
@@ -29,7 +29,7 @@ export const MorePageMenu = () => {
             <span>Написать тренеру</span>
           </span>
 
-          <img src={rightArrow} alt="" />
+          <RightArrow />
         </a>
       </li>
     </ul>
