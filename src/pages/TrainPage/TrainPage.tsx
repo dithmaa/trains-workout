@@ -22,7 +22,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   return (
     <div className="train-page">
       <div className="container">
-        <TopNav trainDate={trainDateString} id={Number(id)} />
+        <TopNav title={trainDateString} id={Number(id)} />
         {trainPicture !== "none" && (
           <div className="train-page__picture">
             <img src={trainPicture} alt="" />
