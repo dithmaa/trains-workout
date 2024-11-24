@@ -15,8 +15,10 @@ export const GriphSizes = () => {
       {griphSizes.map((item, key) => {
         return (
           <div
+            key={key}
             className={
-              styles.root__item + ` ${activeGriph[key] === true && "active"}`
+              styles.root__item +
+              ` ${activeGriph[key] === true && styles.root_active}`
             }
             onClick={() => handleActiveGriph(key)}
           >

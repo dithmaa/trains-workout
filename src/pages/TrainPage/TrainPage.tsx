@@ -19,10 +19,14 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const linkPath = isExercisePage ? `/train-page/${id}` : `/trains`;
+  console.log(linkPath);
+
   return (
     <div className="train-page">
       <div className="container">
-        <TopNav title={trainDateString} id={Number(id)} />
+        <TopNav linkPath={linkPath} title={trainDateString} />
         {trainPicture !== "none" && (
           <div className="train-page__picture">
             <img src={trainPicture} alt="" />

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./BarbellSizes.module.scss";
 export const BarbellSizes = () => {
   const weights = ["1,25 кг", "2,5 кг", "5 кг", "10 кг", "15 кг", "20 кг"];
-  const [activeIndexes, setActiveIndexes] = React.useState<number[]>([]); // Индекс активного элемента
+  const [activeIndexes, setActiveIndexes] = React.useState<number[]>([0]); // Индекс активного элемента
   const handleClick = (index: number) => {
     setActiveIndexes(
       (prev) =>

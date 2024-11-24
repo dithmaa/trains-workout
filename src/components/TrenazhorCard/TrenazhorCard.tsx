@@ -36,7 +36,8 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
             <div
               key={key}
               className={
-                styles.root__size + ` ${activeSizes[key] === true && "active"} `
+                styles.root__size +
+                ` ${activeSizes[key] === true && styles.root_active} `
               }
               onClick={() => handleActiveSizes(key)}
             >

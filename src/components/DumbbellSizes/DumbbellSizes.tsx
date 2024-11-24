@@ -18,7 +18,7 @@ export const DumbbellSizes = () => {
     "12 кг",
     "12.5 кг",
   ];
-  const [activeIndexes, setActiveIndexes] = React.useState<number[]>([]); // Индекс активного элемента
+  const [activeIndexes, setActiveIndexes] = React.useState<number[]>([0]); // Индекс активного элемента
   const handleClick = (index: number) => {
     setActiveIndexes(
       (prev) =>

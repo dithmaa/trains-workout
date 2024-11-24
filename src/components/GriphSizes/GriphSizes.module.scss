@@ -1,5 +1,6 @@
 .root {
   margin: 40px 0;
+
   &__item {
     background-color: #f4f4f4;
     border: 3px solid #e6e9ed;
@@ -20,8 +21,7 @@
       opacity: 0.6;
     }
   }
-}
-
-:global(.active) {
-  border-color: #01bb16;
+  &_active {
+    border-color: #01bb16;
+  }
 }

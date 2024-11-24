@@ -3,6 +3,7 @@ import {
   BarbellSizes,
   DumbbellSizes,
   GriphSizes,
+  Inventory,
   TopNav,
   TrenazhorCard,
 } from "../../../components";
@@ -22,7 +23,7 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
 
   return (
     <div className="container">
-      <TopNav title={topNavTitle} id={0} />
+      <TopNav title={topNavTitle} linkPath="/equipments" />
       <h2 className="main-title">{title}</h2>
       {pageName === "dumbbells" && <DumbbellSizes />}
       {pageName === "barbells" && <BarbellSizes />}
@@ -42,6 +43,7 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
           sizes={["2,5", "5", "10"]}
         />
       )}
+      {pageName === "inventory" && <Inventory />}
     </div>
   );
 };
