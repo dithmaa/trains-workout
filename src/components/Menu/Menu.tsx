@@ -20,9 +20,8 @@ export const Menu: React.FC<MenuProps> = ({ active }) => {
             <Link
               key={key}
               to={menuLinks[key]}
-              className={classNames(styles.root__item, {
-                [styles.root__item__active]: active === key,
-              })}
+              className={`${styles.root__item} 
+                ${active === key && "active"}`}
             >
               {menuIcons[key]}
               <span>{item}</span>
