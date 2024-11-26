@@ -12,6 +12,7 @@ export const GriphSizes = () => {
   };
   return (
     <div className={styles.root}>
+      <h2 className="main-title">Какие грифы есть в вашем зале?</h2>
       {griphSizes.map((item, key) => {
         return (
           <div
