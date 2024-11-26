@@ -16,11 +16,7 @@ export const HomePage = () => {
   return (
     <div className="home-page">
       <Menu active={0} />
-      <Plaque
-        title={"📈 Ваш прогресс"}
-        isTriggered={isTriggered}
-        onClick={handleTriggered}
-      />
+      <Plaque title={"📈 Ваш прогресс"} />
       <DayTrackerPlaque />
       <ContentPlaque />
       <h2 className="title">Цель недели</h2>

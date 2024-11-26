@@ -9,12 +9,7 @@ export const MorePage = () => {
   return (
     <div className="more-page">
       <Menu active={2} />
-      <Plaque
-        title={"Подписка"}
-        text="30 дней"
-        isTriggered={isTriggered}
-        onClick={handleTriggered}
-      />
+      <Plaque title={"Подписка"} text="30 дней" />
       <MorePageMenu />
     </div>
   );
