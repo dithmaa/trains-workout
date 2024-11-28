@@ -154,13 +154,13 @@
             "id": 39,
             "equipment_id": 3,
             "detail_id": 3,
-            "value": "200 кг"
+            "value": "20 кг"
           },
           {
             "id": 40,
             "equipment_id": 3,
             "detail_id": 3,
-            "value": "100 кг"
+            "value": "10 кг"
           }
         ]
       }

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dumbbells: [], // Для хранения гантелей
   barbells: [], // Для хранения штанг
+  inventory: [],
 };
 export const equipmentsSlice = createSlice({
   name: "equipments",
@@ -13,8 +14,12 @@ export const equipmentsSlice = createSlice({
     setBarbells: (state, { payload }) => {
       state.barbells = payload; // Полностью перезаписываем данные
     },
+    setInventory: (state, { payload }) => {
+      state.inventory = payload; // Полностью перезаписываем данные
+    },
   },
 });
 
-export const { setDumbbells, setBarbells } = equipmentsSlice.actions;
+export const { setDumbbells, setBarbells, setInventory } =
+  equipmentsSlice.actions;
 export default equipmentsSlice.reducer;

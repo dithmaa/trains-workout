@@ -22,6 +22,7 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
   const location = useLocation();
   const { dumbbells } = useSelector((state: any) => state.equipments);
   const { barbells } = useSelector((state: any) => state.equipments);
+  const { inventory } = useSelector((state: any) => state.equipments);
 
   const pageName = location.pathname.split("/")[2];
 
@@ -69,7 +70,7 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
         />
       )}
       {/* Инвентарь */}
-      {pageName === "inventory" && <Inventory />}
+      {pageName === "inventory" && <Inventory details={inventory.details} />}
     </div>
   );
 };

@@ -10,7 +10,30 @@ import inventoryImg8 from "../../assets/img/inventory/8.png";
 import inventoryImg9 from "../../assets/img/inventory/9.png";
 import React, { useState } from "react";
 
-export const Inventory = () => {
+interface Size {
+  id: number;
+  equipment_id: number;
+  detail_id: number;
+  value: string;
+}
+
+// Тип для основного объекта details
+interface Detail {
+  id: number;
+  equipment_id: number;
+  title_photo: string | null; // Если фото отсутствует, оно null
+  name: string;
+  type: string;
+  options: Size[]; // Вложенный массив с типом Size
+}
+
+// Тип для пропсов компонента
+interface InventorySizesProps {
+  details: Detail[]; // Массив объектов с типом Detail
+}
+export const Inventory: React.FC<InventorySizesProps> = ({ details }) => {
+  console.log(details);
+
   const inventorys = [
     { id: 1, title: "Скамья", image: inventoryImg1 },
     { id: 2, title: "Степ", image: inventoryImg2 },
@@ -36,20 +59,21 @@ export const Inventory = () => {
 
   return (
     <div className={styles.root}>
-      {inventorys.map((item, index) => (
-        <div
-          key={item.id}
-          className={`${styles.root__item} ${
-            activeItems[index] ? styles.root_active : ""
-          }`} // Добавляем активный класс, если элемент выбран
-          onClick={() => handleToggle(index)} // Обработчик клика
-        >
-          <div className={styles.root__picture}>
-            <img src={item.image} alt={item.title} />
+      {details &&
+        details.map((item, index) => (
+          <div
+            key={item.id}
+            className={`${styles.root__item} ${
+              activeItems[index] ? styles.root_active : ""
+            }`} // Добавляем активный класс, если элемент выбран
+            onClick={() => handleToggle(index)} // Обработчик клика
+          >
+            <div className={styles.root__picture}>
+              <img src={String(item.title_photo)} alt={item.name} />
+            </div>
+            <span className={styles.root__title}>{item.name}</span>
           </div>
-          <span className={styles.root__title}>{item.title}</span>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

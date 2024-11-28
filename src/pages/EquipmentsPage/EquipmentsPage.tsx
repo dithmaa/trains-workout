@@ -3,7 +3,11 @@ import { Equipments, TopNav } from "../../components";
 import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setBarbells, setDumbbells } from "../../store/equipmentsSlice";
+import {
+  setBarbells,
+  setDumbbells,
+  setInventory,
+} from "../../store/equipmentsSlice";
 
 export const EquipmentsPage = () => {
   const location = useLocation();
@@ -21,6 +25,7 @@ export const EquipmentsPage = () => {
       .then(({ data }) => {
         dispatch(setDumbbells(data[3]));
         dispatch(setBarbells(data[2]));
+        dispatch(setInventory(data[0]));
       });
   };
   useEffect(() => {
