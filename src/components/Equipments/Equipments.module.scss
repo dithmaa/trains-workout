@@ -28,9 +28,10 @@
     align-items: center;
     margin: 10px 0;
     cursor: pointer;
-    transition: 0.25s ease opacity;
+    transition: 0.25s ease opacity, 0.25s ease transform;
     &:active {
       opacity: 0.6;
+      transform: scale(0.9);
     }
     &:nth-child(2) {
       img {

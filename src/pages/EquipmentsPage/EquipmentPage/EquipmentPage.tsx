@@ -9,6 +9,8 @@ import {
 } from "../../../components";
 import trenazhorImg1 from "../../../assets/img/trenazhors/1.png";
 import trenazhorImg2 from "../../../assets/img/trenazhors/2.png";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 interface EquipmentPageProps {
   title: string;
   topNavTitle: string;
@@ -18,14 +20,43 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
   topNavTitle,
 }) => {
   const location = useLocation();
-
+  const { dumbbells } = useSelector((state: any) => state.equipments);
+  const { barbells } = useSelector((state: any) => state.equipments);
   const pageName = location.pathname.split("/")[2];
 
   return (
     <div className="container">
-      <TopNav title={topNavTitle} linkPath="/equipments" />
-      <h2 className="main-title">{title}</h2>
-      {pageName === "dumbbells" && <DumbbellSizes />}
+      {/* Гантели */}
+      {pageName === "dumbbells" && (
+        <TopNav
+          title={dumbbells ? dumbbells.title : "name"}
+          linkPath="/equipments"
+        />
+      )}
+      {pageName === "dumbbells" && (
+        <h2 className="main-title">
+          {dumbbells.details && dumbbells.details[0].name}
+        </h2>
+      )}
+
+      {pageName === "dumbbells" && (
+        <DumbbellSizes details={dumbbells.details} />
+      )}
+      {/* Штанги */}
+
+      {pageName === "barbells" && (
+        <TopNav
+          title={barbells ? barbells.title : "name"}
+          linkPath="/equipments"
+        />
+      )}
+      {/* 
+      {pageName === "barbells" && (
+        <h2 className="main-title">
+          {barbells.details && barbells.details[0].name}
+        </h2>
+      )} */}
+
       {pageName === "barbells" && <BarbellSizes />}
       {pageName === "barbells" && <GriphSizes />}
       {/* Тренажеры */}
@@ -43,6 +74,7 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
           sizes={["2,5", "5", "10"]}
         />
       )}
+      {/* Инвентарь */}
       {pageName === "inventory" && <Inventory />}
     </div>
   );
