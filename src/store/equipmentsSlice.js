@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dumbbells: [], // Для хранения гантелей
+  barbells: [], // Для хранения штанг
 };
 export const equipmentsSlice = createSlice({
   name: "equipments",

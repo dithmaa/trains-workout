@@ -102,14 +102,14 @@
         "id": 2,
         "equipment_id": 3,
         "title_photo": null,
-        "name": "Какие блины есть в вашем зале?",
+        "name": "Какие panckaks есть в вашем зале?",
         "type": "pancakes",
         "options": [
           {
             "id": 34,
             "equipment_id": 3,
             "detail_id": 2,
-            "value": "2.5 кг"
+            "value": "2.500 кг"
           },
           {
             "id": 33,
@@ -139,7 +139,7 @@
             "id": 38,
             "equipment_id": 3,
             "detail_id": 2,
-            "value": "20 кг"
+            "value": "2000 кг"
           }
         ]
       },
@@ -147,20 +147,20 @@
         "id": 3,
         "equipment_id": 3,
         "title_photo": null,
-        "name": "Какие грифы есть в вашем зале?",
+        "name": "Какие gryphs есть в вашем зале?",
         "type": "griphs",
         "options": [
           {
             "id": 39,
             "equipment_id": 3,
             "detail_id": 3,
-            "value": "20 кг"
+            "value": "200 кг"
           },
           {
             "id": 40,
             "equipment_id": 3,
             "detail_id": 3,
-            "value": "10 кг"
+            "value": "100 кг"
           }
         ]
       }

@@ -35,6 +35,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
   };
   return (
     <div className={styles.root}>
+      {details && <h2 className="main-title">{details[0].name}</h2>}
       {details &&
         details[0].options.map((weight, index) => (
           <div

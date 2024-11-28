@@ -22,6 +22,7 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
   const location = useLocation();
   const { dumbbells } = useSelector((state: any) => state.equipments);
   const { barbells } = useSelector((state: any) => state.equipments);
+
   const pageName = location.pathname.split("/")[2];
 
   return (
@@ -34,15 +35,12 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
         />
       )}
       {pageName === "dumbbells" && (
-        <h2 className="main-title">
-          {dumbbells.details && dumbbells.details[0].name}
-        </h2>
-      )}
-
-      {pageName === "dumbbells" && (
         <DumbbellSizes details={dumbbells.details} />
       )}
-      {/* Штанги */}
+      {/* Штанги
+      
+      
+      */}
 
       {pageName === "barbells" && (
         <TopNav
@@ -50,15 +48,11 @@ export const EquipmentPage: React.FC<EquipmentPageProps> = ({
           linkPath="/equipments"
         />
       )}
-      {/* 
-      {pageName === "barbells" && (
-        <h2 className="main-title">
-          {barbells.details && barbells.details[0].name}
-        </h2>
-      )} */}
 
-      {pageName === "barbells" && <BarbellSizes />}
-      {pageName === "barbells" && <GriphSizes />}
+      {pageName === "barbells" && <BarbellSizes details={barbells.details} />}
+
+      {pageName === "barbells" && <GriphSizes details={barbells.details} />}
+
       {/* Тренажеры */}
       {pageName === "trenazhor" && (
         <TrenazhorCard
