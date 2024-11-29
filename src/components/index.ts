@@ -17,4 +17,7 @@ export { DumbbellSizes } from "./DumbbellSizes/DumbbellSizes";
 export { BarbellSizes } from "./BarbellSizes/BarbellSizes";
 export { GriphSizes } from "./GriphSizes/GriphSizes";
 export { TrenazhorCard } from "./TrenazhorCard/TrenazhorCard";
-export { Inventory } from "./Inventory/Inventory";
+export { InventoryPlace } from "./InventoryPlace/InventoryPlace";
+export { TrenazhorPlace } from "./TrenazhorPlace/TrenazhorPlace";
+export { Dumbbells } from "./Dumbbells/Dumbbells";
+export { Barbells } from "./Barbells/Barbells";

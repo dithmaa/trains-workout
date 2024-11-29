@@ -7,6 +7,7 @@ import {
   setBarbells,
   setDumbbells,
   setInventory,
+  setTrenazhors,
 } from "../../store/equipmentsSlice";
 
 export const EquipmentsPage = () => {
@@ -26,6 +27,7 @@ export const EquipmentsPage = () => {
         dispatch(setDumbbells(data[3]));
         dispatch(setBarbells(data[2]));
         dispatch(setInventory(data[0]));
+        dispatch(setTrenazhors(data[1]));
       });
   };
   useEffect(() => {
