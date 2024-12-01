@@ -34,8 +34,6 @@ interface InventoryPlaceSizesProps {
 export const InventoryPlace: React.FC<InventoryPlaceSizesProps> = ({
   details,
 }) => {
-  console.log(details);
-
   const inventorys = [
     { id: 1, title: "Скамья", image: inventoryImg1 },
     { id: 2, title: "Степ", image: inventoryImg2 },

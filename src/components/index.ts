@@ -21,3 +21,6 @@ export { InventoryPlace } from "./InventoryPlace/InventoryPlace";
 export { TrenazhorPlace } from "./TrenazhorPlace/TrenazhorPlace";
 export { Dumbbells } from "./Dumbbells/Dumbbells";
 export { Barbells } from "./Barbells/Barbells";
+export { Trenazhor } from "./Trenazhor/Trenazhor";
+export { Inventory } from "./Inventory/Inventory";
+export { Preloader } from "./Preloader/Preloader";

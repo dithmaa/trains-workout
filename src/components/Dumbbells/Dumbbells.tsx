@@ -1,45 +1,17 @@
+import { useGetEquipmentsQuery } from "../../store/equipmentsApi";
 import { DumbbellSizes } from "../DumbbellSizes/DumbbellSizes";
+import { Preloader } from "../Preloader/Preloader";
 import { TopNav } from "../TopNav/TopNav";
 
-// Тип для каждого объекта в массиве `options`
-interface Option {
-  id: number;
-  equipment_id: number;
-  detail_id: number;
-  value: string;
-}
-
-// Тип для объектов в массиве `details`
-interface Detail {
-  id: number;
-  equipment_id: number;
-  title_photo: string | null;
-  name: string;
-  type: string;
-  options: Option[];
-}
-
-// Тип для основного объекта
-interface Dumbbells {
-  id: number;
-  title: string;
-  title_photo: string; // URL строки
-  details: Detail[]; // Массив объектов Detail
-}
-
-// Тип для пропса компонента
-interface DumbbellsProps {
-  dumbbells: Dumbbells;
-}
-
-export const Dumbbells: React.FC<DumbbellsProps> = ({ dumbbells }) => {
+export const Dumbbells = () => {
+  const { data, isLoading } = useGetEquipmentsQuery({});
+  if (isLoading) return <Preloader />;
+  const dumbbells = data.equipments[3];
+  const details = dumbbells.details;
   return (
     <div className="dumbbells">
-      <TopNav
-        title={dumbbells ? dumbbells.title : "name"}
-        linkPath="/equipments"
-      />
-      <DumbbellSizes details={dumbbells.details} />
+      <TopNav title={dumbbells.title} linkPath="/equipments" />
+      <DumbbellSizes details={details} />
     </div>
   );
 };

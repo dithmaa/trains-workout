@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@qpokychuk/sf-pro-display": "^1.0.2",
-    "@reduxjs/toolkit": "^2.3.0",
+    "@reduxjs/toolkit": "^2.4.0",
     "@shadcn/ui": "^0.0.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -13,6 +13,7 @@
     "@types/node": "^16.18.119",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/react-redux": "^7.1.34",
     "axios": "^1.7.8",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",

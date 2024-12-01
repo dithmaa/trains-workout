@@ -24,6 +24,8 @@ interface DumbbellSizesProps {
   details: Detail[]; // Массив объектов с типом Detail
 }
 export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
+  console.log(details);
+
   const [activeIndexes, setActiveIndexes] = React.useState<number[]>([0]); // Индекс активного элемента
   const handleClick = (index: number) => {
     setActiveIndexes(

@@ -1,14 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { Equipments, TopNav } from "../../components";
-import { useEffect } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import {
-  setBarbells,
-  setDumbbells,
-  setInventory,
-  setTrenazhors,
-} from "../../store/equipmentsSlice";
 
 export const EquipmentsPage = () => {
   const location = useLocation();
@@ -19,20 +10,6 @@ export const EquipmentsPage = () => {
     location.pathname === `/equipments/inventory`;
 
   const linkPath = isEquipmentPage ? `/equipments/` : `/more`;
-  const dispatch = useDispatch();
-  const getEquipmentData = async () => {
-    const data = await axios
-      .get("http://localhost:3000/equipments.json")
-      .then(({ data }) => {
-        dispatch(setDumbbells(data[3]));
-        dispatch(setBarbells(data[2]));
-        dispatch(setInventory(data[0]));
-        dispatch(setTrenazhors(data[1]));
-      });
-  };
-  useEffect(() => {
-    getEquipmentData();
-  }, []);
 
   return (
     <div className={"equipments-page"}>

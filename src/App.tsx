@@ -16,42 +16,10 @@ function App() {
           <Route path="/more" element={<MorePage />} />
           <Route path="/trains" element={<TrainsPage />} />
           <Route path="/equipments" element={<EquipmentsPage />}>
-            <Route
-              path="dumbbells"
-              element={
-                <EquipmentPage
-                  title="Какие гантели есть в вашем зале?"
-                  topNavTitle="Гантели"
-                />
-              }
-            />
-            <Route
-              path="barbells"
-              element={
-                <EquipmentPage
-                  title="Какие блины есть в вашем зале?"
-                  topNavTitle="Штанги"
-                />
-              }
-            />
-            <Route
-              path="trenazhor"
-              element={
-                <EquipmentPage
-                  title="Какие тренажеры есть в вашем зале?"
-                  topNavTitle="Тренажеры"
-                />
-              }
-            />
-            <Route
-              path="inventory"
-              element={
-                <EquipmentPage
-                  title="Какое оборудование есть в вашем зале?"
-                  topNavTitle="Инвентарь"
-                />
-              }
-            />
+            <Route path="dumbbells" element={<EquipmentPage />} />
+            <Route path="barbells" element={<EquipmentPage />} />
+            <Route path="trenazhor" element={<EquipmentPage />} />
+            <Route path="inventory" element={<EquipmentPage />} />
           </Route>
           <Route path="/" element={<HomePage />} />
         </Routes>
