@@ -1,11 +1,13 @@
 import { Workout } from "./Workout/Workout";
-
-export const Workouts = () => {
+interface WorkoutsProps {
+  exercizes: any;
+}
+export const Workouts: React.FC<WorkoutsProps> = ({ exercizes }) => {
   return (
     <div className="workouts">
-      <Workout />
-      <Workout />
-      <Workout />
+      {exercizes.map((item: any, index: number) => (
+        <Workout title={item.title} image={item.title_photo} key={index} />
+      ))}
     </div>
   );
 };

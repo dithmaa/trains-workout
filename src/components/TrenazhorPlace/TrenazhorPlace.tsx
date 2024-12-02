@@ -16,17 +16,17 @@ interface TrenazhorPlaceProps {
   details: Detail[]; // Массив объектов с типом Detail
 }
 export const TrenazhorPlace: React.FC<TrenazhorPlaceProps> = ({ details }) => {
-  console.log(details);
-
   return (
     <div className="trenzahor-place">
       {details.map((item, key) => {
+        console.log(item.options);
+
         return (
           <TrenazhorCard
             key={key}
             picture={String(item.title_photo)}
             title={item.name}
-            sizes={["2,5", "5", "10"]}
+            sizes={item.options ?? []}
           />
         );
       })}

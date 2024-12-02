@@ -1,16 +1,24 @@
 import React from "react";
 import styles from "./TrenazhorCard.module.scss";
+type Sizes = {
+  id: number;
+  equipment_id: number;
+  detail_id: number;
+  value: string;
+};
 interface TrenazhorCardProps {
   picture: string;
   title: string;
-  sizes: string[];
+  sizes: Sizes[];
 }
 export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   picture,
   title,
   sizes,
 }) => {
-  const [activeSizes, setActiveSizes] = React.useState([true, false, false]);
+  const [activeSizes, setActiveSizes] = React.useState(
+    Array(sizes.length).fill(false)
+  );
   const handleActiveSizes = (index: number) => {
     const newActiveSizes = activeSizes.map((item, key) => {
       if (key === index) {
@@ -41,7 +49,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
               }
               onClick={() => handleActiveSizes(key)}
             >
-              {item}
+              {item.value.split(" ")[0]}
             </div>
           );
         })}

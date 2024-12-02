@@ -19,13 +19,11 @@ export const TrainsPage = () => {
     handleCreateTraining();
   }, []);
 
-  console.log(trainings);
-
   if (isLoading)
     return (
       <>
         <Menu active={1} />
-        <Preloader />
+        <Preloader hasMenu />
       </>
     );
 

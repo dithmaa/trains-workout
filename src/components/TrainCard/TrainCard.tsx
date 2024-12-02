@@ -35,11 +35,11 @@ export const TrainCard: React.FC<TrainCardProps> = ({
         )}
       </div>
       <div className={styles.root__title}>{title}</div>
-      <p>{describtion}</p>
-      <div className={styles.root__duration}>
+      {/* <p>{describtion}</p> */}
+      {/* <div className={styles.root__duration}>
         <TimeIcon />
         <span>{duration}</span>
-      </div>
+      </div> */}
       {index === 0 && (
         <div className={styles.root__btn + " main-btn"}>
           <LeftArrow />

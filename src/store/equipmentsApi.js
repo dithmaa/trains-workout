@@ -15,7 +15,17 @@ export const equipmentsApi = createApi({
         body,
       }),
     }),
+    createExercisez: builder.mutation({
+      query: (body) => ({
+        url: "/trainings/exercizes/",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
-export const { useGetEquipmentsQuery, useCreateTrainingMutation } =
-  equipmentsApi;
+export const {
+  useGetEquipmentsQuery,
+  useCreateTrainingMutation,
+  useCreateExercisezMutation,
+} = equipmentsApi;
