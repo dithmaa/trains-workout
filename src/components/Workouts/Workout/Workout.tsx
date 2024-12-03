@@ -1,8 +1,8 @@
 import styles from "./Workout.module.scss";
-import workoutImg1 from "../../../assets/img/workouts/1.png";
 interface WorkoutProps {
   title: string;
   image: string;
+  describtion: string;
 }
 export const Workout: React.FC<WorkoutProps> = ({ title, image }) => {
   return (

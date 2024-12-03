@@ -13,6 +13,7 @@ export default function ExercisePage() {
         init: "758575043",
         training_id: 1,
       }).unwrap();
+
       setExercizes(result.exercizes);
     } catch (err) {
       console.error("Error:", err);

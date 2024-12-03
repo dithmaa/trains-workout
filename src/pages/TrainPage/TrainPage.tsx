@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
 import { ExercisesTop, TopNav } from "../../components";
 import { trainData } from "../../data/trains";
 import { Exercises } from "../../components/Exercises/Exercises";
 import classNames from "classnames";
+import { useCreateExercisezMutation } from "../../store/equipmentsApi";
 
 interface TrainPageProps {}
 
@@ -23,6 +24,27 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const linkPath = isExercisePage ? `/train-page/${id}` : `/trains`;
   console.log(linkPath);
 
+  const [createTraining, { data, isLoading, error }] =
+    useCreateExercisezMutation();
+  const [exercizes, setExercizes] = useState([]);
+
+  const handleCreateTraining = async () => {
+    try {
+      const result = await createTraining({
+        init: "758575043",
+        training_id: 1,
+      }).unwrap();
+      console.log(result.exercizes);
+
+      setExercizes(result.exercizes);
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
+  useEffect(() => {
+    handleCreateTraining();
+  }, []);
+
   return (
     <div className="train-page">
       <div className="container">
@@ -38,7 +60,11 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
           })}
         >
           <ExercisesTop isExercisePage={isExercisePage} id={Number(id)} />
-          {!isExercisePage ? <Exercises id={Number(id)} /> : <Outlet />}
+          {!isExercisePage ? (
+            <Exercises exercizes={exercizes} id={Number(id)} />
+          ) : (
+            <Outlet />
+          )}
         </div>
       </div>
     </div>
