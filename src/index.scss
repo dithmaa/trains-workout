@@ -133,3 +133,12 @@ img {
 .home-page {
   padding-top: 20px;
 }
+
+.train-page {
+  &__picture {
+    img {
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+}

@@ -20,8 +20,6 @@ interface WorkoutsProps {
 }
 
 export const Workouts: React.FC<WorkoutsProps> = ({ exercizes }) => {
-  console.log(exercizes);
-
   return (
     <div className="workouts">
       {exercizes.map((item: any, index: number) => (

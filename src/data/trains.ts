@@ -19,4 +19,11 @@ export const trainData: TrainData[] = [
     duration: "30 мин",
     image: trainCards[0],
   },
+  {
+    dateTitle: "Сегодня",
+    title: "Сегодня",
+    description: "Комплекс ОФП для тела (корпус, кор)",
+    duration: "30 мин",
+    image: trainCards[1],
+  },
 ];

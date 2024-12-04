@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Preloader, Trains } from "../../components";
-import { useCreateTrainingMutation } from "../../store/equipmentsApi";
+import { useCreateTrainingMutation } from "../../store/trainingsApi";
 
 export const TrainsPage = () => {
   const [createTraining, { data, isLoading, error }] =

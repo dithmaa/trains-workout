@@ -4,18 +4,20 @@ import { trainData } from "../../data/trains";
 interface ExercisesTopProps {
   isExercisePage: boolean;
   id: number;
+  title: string;
 }
 export const ExercisesTop: React.FC<ExercisesTopProps> = ({
   isExercisePage,
   id,
+  title,
 }) => {
   return (
     <div className={styles.root}>
-      <h2>{trainData[Number(id)].title}</h2>
+      <h2>{title}</h2>
       {!isExercisePage ? (
         <div className="train-page__duration">
-          <TimeIcon />
-          <span>{trainData[Number(id)].duration}</span>
+          {/* <TimeIcon /> */}
+          {/* <span>{trainData[Number(id)].duration}</span> */}
         </div>
       ) : (
         <p style={{ marginTop: "0px" }}>{trainData[Number(id)].description}</p>

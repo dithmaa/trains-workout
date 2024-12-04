@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TrainCard } from "..";
 import { trainData } from "../../data/trains";
 import styles from "./Trains.module.scss";
+import { formatScheduleDate } from "../../hook_functions/hook_functions";
 
 type Training = {
   id: number; // Уникальный идентификатор
@@ -16,37 +17,7 @@ interface TrainsProps {
 }
 export const Trains: React.FC<TrainsProps> = ({ trainings }) => {
   console.log(trainings);
-
   // Функция для преобразования даты
-  function formatScheduleDate(isoDate: string): string {
-    const date = new Date(isoDate);
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-
-    // Сравниваем только год, месяц и день
-    const isToday =
-      date.getFullYear() === today.getFullYear() &&
-      date.getMonth() === today.getMonth() &&
-      date.getDate() === today.getDate();
-
-    const isTomorrow =
-      date.getFullYear() === tomorrow.getFullYear() &&
-      date.getMonth() === tomorrow.getMonth() &&
-      date.getDate() === tomorrow.getDate();
-
-    if (isToday) {
-      return "Сегодня";
-    } else if (isTomorrow) {
-      return "Завтра";
-    }
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-    }; // Формат: "2 декабря"
-    return date.toLocaleDateString("ru-RU", options); // Локализация для русского языка
-  }
 
   return (
     <div className={styles.root}>
@@ -54,12 +25,12 @@ export const Trains: React.FC<TrainsProps> = ({ trainings }) => {
         <div key={index}>
           {/* Заголовок даты */}
           <h2 className="trains__title">
-            {formatScheduleDate("2024-12-02T18:36:46.455442")}
+            {formatScheduleDate("2024-12-04T18:36:46.455442")}
           </h2>
 
           {/* Карточка тренировки */}
           <TrainCard
-            index={index}
+            index={train.id}
             image={String(train.title_photo)}
             describtion={"Описание"}
             duration={String(train.training_sample_id)}

@@ -8,24 +8,6 @@ export const equipmentsApi = createApi({
     getEquipments: builder.query({
       query: () => "/equipments",
     }),
-    createTraining: builder.mutation({
-      query: (body) => ({
-        url: "/trainings/",
-        method: "POST",
-        body,
-      }),
-    }),
-    createExercisez: builder.mutation({
-      query: (body) => ({
-        url: "/trainings/exercizes/",
-        method: "POST",
-        body,
-      }),
-    }),
   }),
 });
-export const {
-  useGetEquipmentsQuery,
-  useCreateTrainingMutation,
-  useCreateExercisezMutation,
-} = equipmentsApi;
+export const { useGetEquipmentsQuery } = equipmentsApi;

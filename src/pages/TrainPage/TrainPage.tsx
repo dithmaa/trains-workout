@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
-import { ExercisesTop, TopNav } from "../../components";
+import { ExercisesTop, Preloader, TopNav, Workouts } from "../../components";
 import { trainData } from "../../data/trains";
 import { Exercises } from "../../components/Exercises/Exercises";
 import classNames from "classnames";
-import { useCreateExercisezMutation } from "../../store/equipmentsApi";
+import {
+  useCreateExercizeMutation,
+  useCreateTrainingMutation,
+} from "../../store/trainingsApi";
+
+interface Training {
+  id: number;
+  title: string;
+  title_photo: string;
+  duration: number;
+  schedule: string;
+}
 
 interface TrainPageProps {}
 
@@ -21,50 +32,71 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const linkPath = isExercisePage ? `/train-page/${id}` : `/trains`;
-  console.log(linkPath);
+  const linkPath = isExercisePage ? `/train-page/${0}` : `/trains`;
 
-  const [createTraining, { data, isLoading, error }] =
-    useCreateExercisezMutation();
+  const [createExercisez, { data, isLoading, error }] =
+    useCreateExercizeMutation();
+  const [createTraining] = useCreateTrainingMutation();
+
+  const [training, setTraining] = useState({} as Training);
   const [exercizes, setExercizes] = useState([]);
 
-  const handleCreateTraining = async () => {
+  const handleCreateExercizes = async () => {
     try {
-      const result = await createTraining({
+      const result = await createExercisez({
         init: "758575043",
         training_id: 1,
       }).unwrap();
-      console.log(result.exercizes);
 
       setExercizes(result.exercizes);
     } catch (err) {
       console.error("Error:", err);
     }
   };
+  const handleCreateTraining = async () => {
+    try {
+      const result = await createTraining({
+        init: "758575043",
+      }).unwrap();
+
+      const selectedTraining = result.trainings.find(
+        (item: Training) => item.id === parseInt(id!)
+      );
+      console.log("result.trainings", result.trainings);
+
+      setTraining(selectedTraining);
+    } catch (err) {
+      console.error("Error:", err);
+    }
+  };
   useEffect(() => {
+    handleCreateExercizes();
     handleCreateTraining();
   }, []);
+
+  if (isLoading) return <Preloader />;
+  console.log(training.title_photo);
 
   return (
     <div className="train-page">
       <div className="container">
-        <TopNav linkPath={linkPath} title={trainDateString} />
-        {trainPicture !== "none" && (
+        <TopNav linkPath={linkPath} title={training.schedule} />
+        {training.title_photo !== "none" && (
           <div className="train-page__picture">
-            <img src={trainPicture} alt="" />
+            <img src={training.title_photo} alt="" />
           </div>
         )}
         <div
           className={classNames("exercises", {
-            "no-image": trainPicture === "none",
+            "no-image": training.title_photo === "none",
           })}
         >
-          <ExercisesTop isExercisePage={isExercisePage} id={Number(id)} />
-          {!isExercisePage ? (
-            <Exercises exercizes={exercizes} id={Number(id)} />
-          ) : (
-            <Outlet />
-          )}
+          <ExercisesTop
+            title={training.title}
+            isExercisePage={isExercisePage}
+            id={Number(id)}
+          />
+          {<Workouts exercizes={exercizes} />}
         </div>
       </div>
     </div>
