@@ -1,6 +1,4 @@
-import exercisesImg1 from "../../../assets/img/exercises/1.jpg";
 import { ReactComponent as TimeIcon } from "../../../assets/img/train-cards/time-icon.svg";
-import { trainData } from "../../../data/trains";
 import { Link } from "react-router-dom";
 import styles from "./ExerciseCard.module.scss";
 

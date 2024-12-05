@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { TrainCard } from "..";
-import { trainData } from "../../data/trains";
 import styles from "./Trains.module.scss";
 import { formatScheduleDate } from "../../hook_functions/hook_functions";
 
