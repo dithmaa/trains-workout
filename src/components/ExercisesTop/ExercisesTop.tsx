@@ -1,6 +1,5 @@
 import styles from "./ExercisesTop.module.scss";
 import { ReactComponent as TimeIcon } from "../../assets/img/train-cards/time-icon.svg";
-import { trainData } from "../../data/trains";
 interface ExercisesTopProps {
   isExercisePage: boolean;
   id: number;
@@ -16,11 +15,11 @@ export const ExercisesTop: React.FC<ExercisesTopProps> = ({
       <h2>{title}</h2>
       {!isExercisePage ? (
         <div className="train-page__duration">
-          {/* <TimeIcon /> */}
-          {/* <span>{trainData[Number(id)].duration}</span> */}
+          <TimeIcon />
+          <span>{0}</span>
         </div>
       ) : (
-        <p style={{ marginTop: "0px" }}>{trainData[Number(id)].description}</p>
+        <p style={{ marginTop: "0px" }}>Описание</p>
       )}
     </div>
   );
