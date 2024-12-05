@@ -26,6 +26,7 @@
     bottom: 0;
     background: linear-gradient(0deg, #232628 0%, rgba(0, 0, 0, 0) 100%);
     z-index: 4;
+    opacity: 0.5;
   }
   &__title {
     font-size: 17px;
@@ -66,7 +67,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    // bottom: 0;
     img {
       height: 100%;
       object-fit: cover;
