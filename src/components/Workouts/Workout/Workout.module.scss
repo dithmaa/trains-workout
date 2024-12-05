@@ -1,5 +1,11 @@
 .root {
   margin: 40px 0;
+  color: inherit;
+  transition: 0.25s ease;
+  cursor: pointer;
+  &:active {
+    opacity: 0.6;
+  }
   &__text {
     padding-left: 13px;
     font-size: 15px;

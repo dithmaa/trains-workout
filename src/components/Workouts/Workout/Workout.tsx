@@ -1,12 +1,22 @@
 import styles from "./Workout.module.scss";
 interface WorkoutProps {
+  id: number;
   title: string;
   image: string;
   describtion: string;
+  trainingId: number;
 }
-export const Workout: React.FC<WorkoutProps> = ({ title, image }) => {
+export const Workout: React.FC<WorkoutProps> = ({
+  title,
+  image,
+  id,
+  trainingId,
+}) => {
+  // console.log(id + " " + trainingId);
+  const link = `https://t.me/FitGuid_bot?start=exercize-${trainingId}-${id}`;
+
   return (
-    <div className={styles.root}>
+    <a href={link} className={styles.root}>
       <h3 className={styles.root__title}>{title}</h3>
       <div className={styles.root__content}>
         <div className={styles.root__picture}>
@@ -17,6 +27,6 @@ export const Workout: React.FC<WorkoutProps> = ({ title, image }) => {
           ком..
         </div>
       </div>
-    </div>
+    </a>
   );
 };

@@ -71,7 +71,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   }, []);
 
   if (isLoading) return <Preloader />;
-  console.log(training.title_photo);
+  console.log("training.id", training.id);
 
   return (
     <div className="train-page">
@@ -92,7 +92,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
             isExercisePage={isExercisePage}
             id={Number(id)}
           />
-          {<Workouts exercizes={exercizes} />}
+          {<Workouts trainingId={training.id} exercizes={exercizes} />}
         </div>
       </div>
     </div>

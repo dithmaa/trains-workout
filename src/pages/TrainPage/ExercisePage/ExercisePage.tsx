@@ -67,7 +67,7 @@ export default function ExercisePage() {
       reprehenderit, repellendus quia. Numquam modi nam alias iste error dolor
       asperiores expedita et corporis. Accusamus sunt dicta officiis expedita?
       Voluptas magnam perspiciatis accusamus omnis dolore suscipit.
-      <Workouts exercizes={exercizes} />
+      <Workouts trainingId={999} exercizes={exercizes} />
     </div>
   );
 }

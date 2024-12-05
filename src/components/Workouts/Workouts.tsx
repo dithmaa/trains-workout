@@ -17,9 +17,13 @@ interface Exercise {
 // Типизация для пропсов компонента Workouts
 interface WorkoutsProps {
   exercizes: Exercise[]; // Массив объектов Exercise
+  trainingId: number;
 }
 
-export const Workouts: React.FC<WorkoutsProps> = ({ exercizes }) => {
+export const Workouts: React.FC<WorkoutsProps> = ({
+  exercizes,
+  trainingId,
+}) => {
   return (
     <div className="workouts">
       {exercizes.map((item: any, index: number) => (
@@ -28,6 +32,8 @@ export const Workouts: React.FC<WorkoutsProps> = ({ exercizes }) => {
           title={item.title}
           image={item.title_photo}
           key={index}
+          id={item.id}
+          trainingId={trainingId}
         />
       ))}
     </div>
