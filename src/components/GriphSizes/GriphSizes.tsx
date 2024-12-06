@@ -26,7 +26,7 @@ interface BarbellSizesProps {
 }
 export const GriphSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   const griphSizes = [10, 20];
-  const [activeGriph, setActiveGriph] = React.useState([true, false]);
+  const [activeGriph, setActiveGriph] = React.useState([false, false]);
   const handleActiveGriph = (index: number) => {
     setActiveGriph((prev) =>
       prev.map((item, i) => (i === index ? !item : item))
