@@ -104,7 +104,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
   };
 
   const handleClick = (index: number, size: Size) => {
-    console.log("size", size.id);
+    console.log("size", size);
 
     // Обновляем активный элемент
     setActiveIndexes((prev) =>
