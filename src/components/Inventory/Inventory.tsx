@@ -23,7 +23,7 @@ export const Inventory = () => {
             : "Какое оборудование есть в вашем зале?"}
         </h2>
       )}
-      <InventoryPlace details={details} />
+      <InventoryPlace items={details} />
     </div>
   );
 };
