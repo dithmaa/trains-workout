@@ -7,6 +7,7 @@ import {
   useCreateExercizeMutation,
   useCreateTrainingMutation,
 } from "../../store/trainingsApi";
+import { formatScheduleDate } from "../../hook_functions/hook_functions";
 
 interface Training {
   id: number;
@@ -71,12 +72,15 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   }, []);
 
   if (isLoading) return <Preloader />;
-  console.log("training.id", training.id);
 
   return (
     <div className="train-page">
       <div className="container">
-        <TopNav linkPath={linkPath} title={training.schedule} />
+        <TopNav
+          linkPath={linkPath}
+          handleSetActivePage={() => null}
+          title={formatScheduleDate(training.schedule)}
+        />
         {training.title_photo !== "none" && (
           <div className="train-page__picture">
             <img src={training.title_photo} alt="" />

@@ -38,32 +38,20 @@ interface InputData {
   }[];
 }
 
-// Тип для полученного ответа
-interface ChoiceResponse {
-  choices: Array<{
-    equipment_id: number;
-    detail_id: number;
-    option_id: number;
-  }>;
-}
-
 export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
-  // Стейт для хранения активных индексов
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
   const [inputData, setInputData] = useState<InputData>({
-    init: "758575043", // Идентификатор
-    equipments: [], // Массив с выбранными опциями
+    init: "758575043",
+    equipments: [],
   });
 
   const handleUpdate = async () => {
     try {
       const response = await updateEquipments(inputData).unwrap();
       console.log("Update success:", response);
-
-      // Обновляем активные индексы на основе полученных данных
       if (response?.choices) {
         const indices = response.choices.map((choice: { option_id: number }) =>
           details[0].options.findIndex(
@@ -79,13 +67,10 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
 
   const handleGetUpdatedEquipments = async () => {
     try {
-      // Отправляем только init с айдишником
       const response = await getUpdatedEquipments({
         init: inputData.init,
       }).unwrap();
-      console.log("Updated equipment:", response);
 
-      // Обновляем активные индексы на основе полученных данных
       if (response?.choices) {
         const indices = response.choices.map((choice: { option_id: number }) =>
           details[0].options.findIndex(
@@ -100,12 +85,10 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   };
 
   const handleClick = (index: number, size: Size) => {
-    // Обновляем активные индексы
     setActiveIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
 
-    // Обновляем данные для отправки в API
     setInputData({
       init: "758575043", // айдишник остается неизменным
       equipments: [
@@ -118,17 +101,14 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     });
   };
 
-  // Вызов handleGetUpdatedEquipments при первом рендере компонента
   useEffect(() => {
-    handleGetUpdatedEquipments(); // Вызов при монтировании компонента
-  }, []); // Пустой массив зависимостей для первого рендера
-
-  // Вызов handleUpdate, когда inputData изменяется
+    handleGetUpdatedEquipments();
+  }, []);
   useEffect(() => {
     if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
       handleUpdate();
     }
-  }, [inputData]); // Обновляем, когда inputData изменяется
+  }, [inputData]);
 
   return (
     <div className={styles.root}>

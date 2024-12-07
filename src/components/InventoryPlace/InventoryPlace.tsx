@@ -4,6 +4,7 @@ import {
   useGetUpdatedEquipmentsMutation,
   useUpdateEquipmentsMutation,
 } from "../../store/equipmentsApi";
+import { Preloader } from "../Preloader/Preloader";
 
 interface InventoryItem {
   id: number;
@@ -17,19 +18,15 @@ interface InventoryProps {
 
 export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
   const [activeItems, setActiveItems] = useState<number[]>([]); // Состояние активных элементов
-  const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
+  const [getUpdatedEquipments, { isLoading }] =
+    useGetUpdatedEquipmentsMutation();
   const [updateEquipments] = useUpdateEquipmentsMutation();
-
-  // Получение актуальных данных при загрузке страницы
   useEffect(() => {
     const fetchUpdatedEquipments = async () => {
       try {
         const response = await getUpdatedEquipments({
           init: "758575043",
         }).unwrap();
-        console.log("Fetched inventory data:", response);
-
-        // Обновление состояния активных элементов на основе detail_id
         if (response?.choices) {
           const activeIds = response.choices.map(
             (choice: { detail_id: number }) => choice.detail_id
@@ -44,7 +41,6 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
     fetchUpdatedEquipments();
   }, []);
 
-  // Обработчик для переключения активного состояния
   const handleToggleItem = async (id: number) => {
     setActiveItems((prev) =>
       isActive ? prev.filter((itemId) => itemId !== id) : [...prev, id]
@@ -65,16 +61,14 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
       };
 
       await updateEquipments(updatedInputData).unwrap();
-
-      console.log("Inventory updated:", updatedInputData);
     } catch (error) {
       console.error("Error updating inventory:", error);
     }
   };
-
+  if (isLoading) return <Preloader />;
   return (
     <div className={styles.root}>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <div
           key={item.id}
           className={`${styles.root__item} ${

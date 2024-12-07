@@ -1,7 +1,6 @@
 import { useGetEquipmentsQuery } from "../../store/equipmentsApi";
 import { DumbbellSizes } from "../DumbbellSizes/DumbbellSizes";
 import { Preloader } from "../Preloader/Preloader";
-import { TopNav } from "../TopNav/TopNav";
 
 export const Dumbbells = () => {
   const { data, isLoading } = useGetEquipmentsQuery({});
@@ -12,7 +11,6 @@ export const Dumbbells = () => {
 
   return (
     <div className="dumbbells">
-      <TopNav title={dumbbells.title} linkPath="/equipments" />
       <DumbbellSizes details={details} />
     </div>
   );
