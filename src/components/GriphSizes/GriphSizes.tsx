@@ -63,7 +63,6 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
   const handleUpdate = async () => {
     try {
       const response = await updateEquipments(inputData).unwrap();
-      console.log("Update success:", response);
 
       // Обновляем активные индексы на основе полученных данных
       if (response?.choices) {
@@ -85,7 +84,6 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
       const response = await getUpdatedEquipments({
         init: inputData.init,
       }).unwrap();
-      console.log("Updated equipment:", response);
 
       // Обновляем активные индексы на основе полученных данных
       if (response?.choices) {

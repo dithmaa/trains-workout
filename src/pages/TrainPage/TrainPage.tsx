@@ -7,7 +7,7 @@ import {
   useCreateExercizeMutation,
   useCreateTrainingMutation,
 } from "../../store/trainingsApi";
-import { formatScheduleDate } from "../../hook_functions/hook_functions";
+import { formatScheduleDate } from "../../utils/formatDate";
 
 interface Training {
   id: number;
@@ -59,7 +59,6 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
       const selectedTraining = result.trainings.find(
         (item: Training) => item.id === parseInt(id!)
       );
-      console.log("result.trainings", result.trainings);
 
       setTraining(selectedTraining);
     } catch (err) {

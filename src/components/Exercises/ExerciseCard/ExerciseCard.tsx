@@ -16,8 +16,6 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
   duration,
   image,
 }) => {
-  console.log(id);
-
   return (
     <div className={styles.root}>
       <div className={styles.root_img}>

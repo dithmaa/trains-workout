@@ -3,8 +3,7 @@ import styles from "./InventoryPlace.module.scss";
 import {
   useGetUpdatedEquipmentsMutation,
   useUpdateEquipmentsMutation,
-} from "../../store/equipmentsApi";
-import { Preloader } from "../Preloader/Preloader";
+} from "../../../store/equipmentsApi";
 
 interface InventoryItem {
   id: number;
@@ -18,8 +17,7 @@ interface InventoryProps {
 
 export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
   const [activeItems, setActiveItems] = useState<number[]>([]); // Состояние активных элементов
-  const [getUpdatedEquipments, { isLoading }] =
-    useGetUpdatedEquipmentsMutation();
+  const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
   const [updateEquipments] = useUpdateEquipmentsMutation();
   useEffect(() => {
     const fetchUpdatedEquipments = async () => {
@@ -65,7 +63,7 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
       console.error("Error updating inventory:", error);
     }
   };
-  if (isLoading) return <Preloader />;
+
   return (
     <div className={styles.root}>
       {items.map((item) => (

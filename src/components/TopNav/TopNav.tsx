@@ -14,8 +14,6 @@ export const TopNav: React.FC<TopNavProps> = ({
   linkPath,
   handleSetActivePage,
 }) => {
-  console.log(linkPath);
-
   return (
     <div className={style.root}>
       {activePage === 0 ? (

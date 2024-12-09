@@ -3,7 +3,7 @@ import styles from "./TrenazhorCard.module.scss";
 import {
   useGetUpdatedEquipmentsMutation,
   useUpdateEquipmentsMutation,
-} from "../../store/equipmentsApi";
+} from "../../../store/equipmentsApi";
 
 // Тип для размеров
 type Sizes = {
@@ -49,7 +49,6 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
 
   // Обработчик клика для активирования/деактивирования размера
   const handleActiveSizes = (index: number, size: Sizes) => {
-    console.log("size", size);
     const newActiveSizes = activeSizes.map((item, key) => {
       if (key === index) {
         return !item;
@@ -75,7 +74,6 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   const handleUpdate = async () => {
     try {
       const response = await updateEquipments(inputData).unwrap();
-      console.log("Update success:", response);
 
       // Дополнительно можно обработать ответ и обновить состояние, если нужно
     } catch (error) {
@@ -90,7 +88,6 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
       const response = await getUpdatedEquipments({
         init: inputData.init,
       }).unwrap();
-      console.log("Updated equipment:", response);
 
       // Обрабатываем ответ от API, например, обновляем активные индексы
       if (response?.choices) {

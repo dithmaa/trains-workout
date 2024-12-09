@@ -1,5 +1,5 @@
 import styles from "./Plaque.module.scss";
-import { ReactComponent as RightArrow } from "../../assets/img/right-arrow.svg";
+import { ReactComponent as RightArrow } from "../../../assets/img/right-arrow.svg";
 import { Link } from "react-router-dom";
 interface PlaqueProps {
   title: string;

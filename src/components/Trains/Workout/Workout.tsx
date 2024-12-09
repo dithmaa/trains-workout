@@ -12,7 +12,6 @@ export const Workout: React.FC<WorkoutProps> = ({
   id,
   trainingId,
 }) => {
-  // console.log(id + " " + trainingId);
   const link = `https://t.me/FitGuid_bot?start=exercize-${trainingId}-${id}`;
 
   return (

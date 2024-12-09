@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "./BarbellSizes.module.scss";
+import styles from "./DumbbellSizes.module.scss";
 import {
   useGetUpdatedEquipmentsMutation,
   useUpdateEquipmentsMutation,
-} from "../../store/equipmentsApi";
+} from "../../../store/equipmentsApi";
 
 // Тип для вложенного объекта options
 interface Size {
@@ -24,7 +24,7 @@ interface Detail {
 }
 
 // Тип для пропсов компонента
-interface BarbellSizesProps {
+interface DumbbellSizesProps {
   details: Detail[]; // Массив объектов с типом Detail
 }
 
@@ -38,7 +38,16 @@ interface InputData {
   }[];
 }
 
-export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
+// Тип для полученного ответа
+interface ChoiceResponse {
+  choices: Array<{
+    equipment_id: number;
+    detail_id: number;
+    option_id: number;
+  }>;
+}
+
+export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
@@ -51,7 +60,6 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   const handleUpdate = async () => {
     try {
       const response = await updateEquipments(inputData).unwrap();
-      console.log("Update success:", response);
       if (response?.choices) {
         const indices = response.choices.map((choice: { option_id: number }) =>
           details[0].options.findIndex(
@@ -90,7 +98,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     );
 
     setInputData({
-      init: "758575043", // айдишник остается неизменным
+      init: "758575043",
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования
@@ -104,6 +112,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   useEffect(() => {
     handleGetUpdatedEquipments();
   }, []);
+
   useEffect(() => {
     if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
       handleUpdate();
@@ -115,13 +124,13 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
       {details && <h2 className="main-title">{details[0].name}</h2>}
       {details &&
         details[0].options.map((weight, index) => (
-          <div className={styles.root__circle} key={index}>
-            <div
-              className={`${styles.root__item} ${
-                activeIndexes.includes(index) ? "active" : ""
-              }`}
-              onClick={() => handleClick(index, weight)} // Передаем weight в обработчик
-            ></div>
+          <div
+            key={index}
+            className={`${styles.root__item} ${
+              activeIndexes.includes(index) ? "active" : ""
+            }`}
+            onClick={() => handleClick(index, weight)}
+          >
             {weight.value}
           </div>
         ))}

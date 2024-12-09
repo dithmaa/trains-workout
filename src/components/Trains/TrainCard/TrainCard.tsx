@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ReactComponent as LeftArrow } from "../../assets/img/train-cards/left-arrow.svg";
+import { ReactComponent as LeftArrow } from "../../../assets/img/train-cards/left-arrow.svg";
 import { ReactComponent as TimeIcon } from "../../assets/img/train-cards/time-icon.svg";
 import styles from "./TrainCard.module.scss";
 import { Link } from "react-router-dom";

@@ -1,5 +1,5 @@
 import styles from "./ExercisesTop.module.scss";
-import { ReactComponent as TimeIcon } from "../../assets/img/train-cards/time-icon.svg";
+import { ReactComponent as TimeIcon } from "../../../assets/img/train-cards/time-icon.svg";
 interface ExercisesTopProps {
   isExercisePage: boolean;
   id: number;

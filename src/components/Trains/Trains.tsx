@@ -1,6 +1,6 @@
 import { TrainCard } from "..";
 import styles from "./Trains.module.scss";
-import { formatScheduleDate } from "../../hook_functions/hook_functions";
+import { formatScheduleDate } from "../../utils/formatDate";
 
 type Training = {
   id: number;

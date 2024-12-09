@@ -1,4 +1,4 @@
-import { Progressbar } from "../";
+import { Progressbar } from "../../";
 import style from "./DayTrackerPlaque.module.scss";
 export const DayTrackerPlaque = () => {
   return (
