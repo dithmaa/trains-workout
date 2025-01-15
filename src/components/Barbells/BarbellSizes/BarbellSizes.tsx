@@ -30,7 +30,7 @@ interface BarbellSizesProps {
 
 // Тип для структуры inputData
 interface InputData {
-  init: string;
+  init: any;
   equipments: {
     equipment_id: number;
     detail_id: number;
@@ -40,13 +40,13 @@ interface InputData {
 const tg = window.Telegram.WebApp;
 
 export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
 
   const [updateEquipments] = useUpdateEquipmentsMutation();
@@ -54,7 +54,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
 
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
   const [inputData, setInputData] = useState<InputData>({
-    init: userId.toString(),
+    init: initData,
     equipments: [],
   });
 
@@ -99,7 +99,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     );
 
     setInputData({
-      init: userId.toString(), // айдишник остается неизменным
+      init: initData, // айдишник остается неизменным
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

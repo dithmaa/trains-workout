@@ -30,7 +30,7 @@ interface DumbbellSizesProps {
 
 // Тип для структуры inputData
 interface InputData {
-  init: string;
+  init: any;
   equipments: {
     equipment_id: number;
     detail_id: number;
@@ -50,13 +50,13 @@ interface ChoiceResponse {
 const tg = window.Telegram.WebApp;
 
 export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
 
   const [updateEquipments] = useUpdateEquipmentsMutation();
@@ -64,7 +64,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
 
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
   const [inputData, setInputData] = useState<InputData>({
-    init: userId.toString(),
+    init: initData,
     equipments: [],
   });
 
@@ -109,7 +109,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
     );
 
     setInputData({
-      init: userId.toString(), // айдишник остается неизменным
+      init: initData, // айдишник остается неизменным
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

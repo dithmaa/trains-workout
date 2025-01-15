@@ -32,7 +32,7 @@ interface GriphSizesProps {
 
 // Тип для структуры inputData
 interface InputData {
-  init: string;
+  init: any;
   equipments: {
     equipment_id: number;
     detail_id: number;
@@ -52,13 +52,13 @@ interface ChoiceResponse {
 const tg = window.Telegram.WebApp;
 
 export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
@@ -66,7 +66,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
   // Стейт для хранения активных индексов
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
   const [inputData, setInputData] = useState<InputData>({
-    init: userId.toString(), // Идентификатор
+    init: initData, // Идентификатор
     equipments: [], // Массив с выбранными опциями
   });
 
@@ -117,7 +117,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
 
     // Обновляем данные для отправки в API
     setInputData({
-      init: userId.toString(), // айдишник остается неизменным
+      init: initData, // айдишник остается неизменным
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

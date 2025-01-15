@@ -21,13 +21,13 @@ interface TrainPageProps {}
 const tg = window.Telegram.WebApp;
 
 export const TrainPage: React.FC<TrainPageProps> = () => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
 
   const { id } = useParams();
@@ -50,7 +50,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const handleCreateExercizes = async () => {
     try {
       const result = await createExercisez({
-        init: userId.toString(),
+        init: initData,
         training_id: 1,
       }).unwrap();
 
@@ -62,7 +62,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const handleCreateTraining = async () => {
     try {
       const result = await createTraining({
-        init: userId.toString(),
+        init: initData,
       }).unwrap();
 
       const selectedTraining = result.trainings.find(

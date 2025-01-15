@@ -21,7 +21,7 @@ interface TrenazhorCardProps {
 }
 
 interface InputData {
-  init: string;
+  init: any;
   equipments: {
     equipment_id: number;
     detail_id: number;
@@ -36,13 +36,13 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   title,
   sizes,
 }) => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
 
   const [updateEquipments] = useUpdateEquipmentsMutation();
@@ -54,7 +54,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   );
 
   const [inputData, setInputData] = useState<InputData>({
-    init: userId.toString(), // Идентификатор пользователя
+    init: initData, // Идентификатор пользователя
     equipments: [], // Массив с выбранными опциями
   });
 
@@ -70,7 +70,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
 
     // Обновляем данные для отправки в API
     setInputData({
-      init: userId.toString(), // Идентификатор пользователя
+      init: initData, // Идентификатор пользователя
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

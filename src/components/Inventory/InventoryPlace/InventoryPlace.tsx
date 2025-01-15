@@ -18,13 +18,13 @@ interface InventoryProps {
 const tg = window.Telegram.WebApp;
 
 export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
 
   const [activeItems, setActiveItems] = useState<number[]>([]); // Состояние активных элементов
@@ -34,7 +34,7 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
     const fetchUpdatedEquipments = async () => {
       try {
         const response = await getUpdatedEquipments({
-          init: userId.toString(),
+          init: initData,
         }).unwrap();
         if (response?.choices) {
           const activeIds = response.choices.map(
@@ -59,7 +59,7 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
 
     try {
       const updatedInputData = {
-        init: userId.toString(),
+        init: initData,
         equipments: [
           {
             equipment_id: 1,

@@ -5,13 +5,13 @@ import { useCreateTrainingMutation } from "../../store/trainingsApi";
 const tg = window.Telegram.WebApp;
 
 export const TrainsPage = () => {
-  const [userId, setUserId] = useState<number>(758575043);
+  const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
     tg.ready();
 
     // Получение userId
-    setUserId(tg?.initDataUnsafe?.user?.id);
+    setInitData(tg?.initDataUnsafe);
   });
 
   const [createTraining, { isLoading }] = useCreateTrainingMutation();
@@ -19,7 +19,7 @@ export const TrainsPage = () => {
 
   const handleCreateTraining = async () => {
     try {
-      const result = await createTraining({ init: userId.toString() }).unwrap();
+      const result = await createTraining({ init: initData }).unwrap();
       setTrainings(result.trainings);
     } catch (err) {
       console.error("Error:", err);
