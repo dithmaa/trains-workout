@@ -51,7 +51,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
     try {
       const result = await createExercisez({
         init: initData,
-        training_id: 1,
+        training_id: id,
       }).unwrap();
 
       setExercizes(result.exercizes);
