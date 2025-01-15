@@ -41,8 +41,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
 
   const linkPath = isExercisePage ? `/train-page/${0}` : `/trains`;
 
-  const [createExercisez, { data, isLoading, error }] =
-    useCreateExercizeMutation();
+  const [createExercisez, { isLoading }] = useCreateExercizeMutation();
   const [createTraining] = useCreateTrainingMutation();
 
   const [training, setTraining] = useState({} as Training);
