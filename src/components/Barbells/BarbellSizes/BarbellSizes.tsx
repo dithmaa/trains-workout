@@ -37,14 +37,24 @@ interface InputData {
     option_id: number;
   }[];
 }
+const tg = window.Telegram.WebApp;
 
 export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
+  const [userId, setUserId] = useState<number>(758575043);
+  useEffect(() => {
+    // Проверка, что WebApp инициализирован
+    tg.ready();
+
+    // Получение userId
+    setUserId(tg?.initDataUnsafe?.user?.id);
+  });
+
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
   const [inputData, setInputData] = useState<InputData>({
-    init: "758575043",
+    init: userId.toString(),
     equipments: [],
   });
 
@@ -89,7 +99,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     );
 
     setInputData({
-      init: "758575043", // айдишник остается неизменным
+      init: userId.toString(), // айдишник остается неизменным
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

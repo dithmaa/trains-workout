@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { ExercisesTop, Preloader, TopNav, Workouts } from "../../components";
-import { Exercises } from "../../components/Exercises/Exercises";
 import classNames from "classnames";
 import {
   useCreateExercizeMutation,
@@ -19,7 +18,18 @@ interface Training {
 
 interface TrainPageProps {}
 
+const tg = window.Telegram.WebApp;
+
 export const TrainPage: React.FC<TrainPageProps> = () => {
+  const [userId, setUserId] = useState<number>(758575043);
+  useEffect(() => {
+    // Проверка, что WebApp инициализирован
+    tg.ready();
+
+    // Получение userId
+    setUserId(tg?.initDataUnsafe?.user?.id);
+  });
+
   const { id } = useParams();
   const location = useLocation();
   const isExercisePage =
@@ -41,7 +51,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const handleCreateExercizes = async () => {
     try {
       const result = await createExercisez({
-        init: "758575043",
+        init: userId.toString(),
         training_id: 1,
       }).unwrap();
 
@@ -53,7 +63,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
   const handleCreateTraining = async () => {
     try {
       const result = await createTraining({
-        init: "758575043",
+        init: userId.toString(),
       }).unwrap();
 
       const selectedTraining = result.trainings.find(

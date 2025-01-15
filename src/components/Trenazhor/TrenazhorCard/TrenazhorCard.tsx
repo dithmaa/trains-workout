@@ -29,11 +29,22 @@ interface InputData {
   }[];
 }
 
+const tg = window.Telegram.WebApp;
+
 export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   picture,
   title,
   sizes,
 }) => {
+  const [userId, setUserId] = useState<number>(758575043);
+  useEffect(() => {
+    // Проверка, что WebApp инициализирован
+    tg.ready();
+
+    // Получение userId
+    setUserId(tg?.initDataUnsafe?.user?.id);
+  });
+
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
@@ -43,7 +54,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   );
 
   const [inputData, setInputData] = useState<InputData>({
-    init: "758575043", // Идентификатор пользователя
+    init: userId.toString(), // Идентификатор пользователя
     equipments: [], // Массив с выбранными опциями
   });
 
@@ -59,7 +70,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
 
     // Обновляем данные для отправки в API
     setInputData({
-      init: "758575043", // Идентификатор пользователя
+      init: userId.toString(), // Идентификатор пользователя
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

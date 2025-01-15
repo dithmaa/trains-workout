@@ -49,14 +49,24 @@ interface ChoiceResponse {
   }>;
 }
 
+const tg = window.Telegram.WebApp;
+
 export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
+  const [userId, setUserId] = useState<number>(758575043);
+  useEffect(() => {
+    // Проверка, что WebApp инициализирован
+    tg.ready();
+
+    // Получение userId
+    setUserId(tg?.initDataUnsafe?.user?.id);
+  });
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
   // Стейт для хранения активных индексов
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
   const [inputData, setInputData] = useState<InputData>({
-    init: "758575043", // Идентификатор
+    init: userId.toString(), // Идентификатор
     equipments: [], // Массив с выбранными опциями
   });
 
@@ -107,7 +117,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
 
     // Обновляем данные для отправки в API
     setInputData({
-      init: "758575043", // айдишник остается неизменным
+      init: userId.toString(), // айдишник остается неизменным
       equipments: [
         {
           equipment_id: size.equipment_id, // Идентификатор оборудования

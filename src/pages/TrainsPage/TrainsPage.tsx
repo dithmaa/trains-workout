@@ -2,14 +2,24 @@ import { useEffect, useState } from "react";
 import { Menu, Preloader, Trains } from "../../components";
 import { useCreateTrainingMutation } from "../../store/trainingsApi";
 
+const tg = window.Telegram.WebApp;
+
 export const TrainsPage = () => {
-  const [createTraining, { data, isLoading, error }] =
-    useCreateTrainingMutation();
+  const [userId, setUserId] = useState<number>(758575043);
+  useEffect(() => {
+    // Проверка, что WebApp инициализирован
+    tg.ready();
+
+    // Получение userId
+    setUserId(tg?.initDataUnsafe?.user?.id);
+  });
+
+  const [createTraining, { isLoading }] = useCreateTrainingMutation();
   const [trainings, setTrainings] = useState([]);
 
   const handleCreateTraining = async () => {
     try {
-      const result = await createTraining({ init: "758575043" }).unwrap();
+      const result = await createTraining({ init: userId.toString() }).unwrap();
       setTrainings(result.trainings);
     } catch (err) {
       console.error("Error:", err);
