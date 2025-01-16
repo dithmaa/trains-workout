@@ -111,6 +111,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   };
 
   useEffect(() => {
+    console.log("handleGetUpdatedEquipments...");
     handleGetUpdatedEquipments();
   }, []);
   useEffect(() => {
