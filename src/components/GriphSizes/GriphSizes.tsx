@@ -58,7 +58,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
     tg.ready();
 
     // Получение userId
-    setInitData(tg?.initDataUnsafe);
+    setInitData(tg?.initData);
   });
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();

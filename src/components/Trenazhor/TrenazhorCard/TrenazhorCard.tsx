@@ -42,7 +42,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
     tg.ready();
 
     // Получение userId
-    setInitData(tg?.initDataUnsafe);
+    setInitData(tg?.initData);
   });
 
   const [updateEquipments] = useUpdateEquipmentsMutation();

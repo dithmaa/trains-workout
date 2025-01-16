@@ -27,7 +27,7 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
     tg.ready();
 
     // Получение userId
-    setInitData(tg?.initDataUnsafe);
+    setInitData(tg?.initData);
   });
 
   const { id } = useParams();

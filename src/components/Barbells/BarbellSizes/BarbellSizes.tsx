@@ -46,7 +46,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     tg.ready();
 
     // Получение userId
-    setInitData(tg?.initDataUnsafe);
+    setInitData(tg?.initData);
   });
 
   const [updateEquipments] = useUpdateEquipmentsMutation();

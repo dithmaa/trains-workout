@@ -24,7 +24,7 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
     tg.ready();
 
     // Получение userId
-    setInitData(tg?.initDataUnsafe);
+    setInitData(tg?.initData);
   });
 
   const [activeItems, setActiveItems] = useState<number[]>([]); // Состояние активных элементов

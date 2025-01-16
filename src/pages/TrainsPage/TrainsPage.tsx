@@ -11,7 +11,7 @@ export const TrainsPage = () => {
     tg.ready();
 
     // Получение userId
-    setInitData(tg?.initDataUnsafe);
+    setInitData(tg?.initData);
   });
 
   const [createTraining, { isLoading }] = useCreateTrainingMutation();
