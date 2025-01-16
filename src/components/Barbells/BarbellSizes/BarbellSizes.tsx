@@ -75,6 +75,10 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   };
 
   const handleGetUpdatedEquipments = async () => {
+    console.log("{init: initData}", {
+      init: initData,
+    });
+
     try {
       const response = await getUpdatedEquipments({
         init: initData,
