@@ -116,8 +116,11 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
 
   useEffect(() => {
     console.log("handleGetUpdatedEquipments...");
+    console.log("handleGetUpdatedEquipments initData", initData);
+
     handleGetUpdatedEquipments();
-  }, []);
+  }, [initData]);
+
   useEffect(() => {
     if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
       handleUpdate();
