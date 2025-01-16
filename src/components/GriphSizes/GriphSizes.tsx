@@ -92,7 +92,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
     try {
       // Отправляем только init с айдишником
       const response = await getUpdatedEquipments({
-        init: inputData.init,
+        init: initData,
       }).unwrap();
 
       // Обновляем активные индексы на основе полученных данных

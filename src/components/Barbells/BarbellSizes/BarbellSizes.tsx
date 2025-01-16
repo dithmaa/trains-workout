@@ -77,7 +77,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   const handleGetUpdatedEquipments = async () => {
     try {
       const response = await getUpdatedEquipments({
-        init: inputData.init,
+        init: initData,
       }).unwrap();
 
       if (response?.choices) {
@@ -125,7 +125,6 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     console.log("tg.initData", tg.initData);
     console.log("tg.initDataUnsafe", tg.initDataUnsafe);
     console.log("initData", initData);
-    console.log("nomto", inputData.init); // Проверьте, содержит ли данные
   }, [initData]);
 
   return (

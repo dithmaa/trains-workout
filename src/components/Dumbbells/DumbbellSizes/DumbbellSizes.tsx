@@ -87,7 +87,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
   const handleGetUpdatedEquipments = async () => {
     try {
       const response = await getUpdatedEquipments({
-        init: inputData.init,
+        init: initData,
       }).unwrap();
 
       if (response?.choices) {

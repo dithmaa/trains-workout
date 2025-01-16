@@ -97,7 +97,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
     try {
       // Отправляем только init с айдишником
       const response = await getUpdatedEquipments({
-        init: inputData.init,
+        init: initData,
       }).unwrap();
 
       // Обрабатываем ответ от API, например, обновляем активные индексы
