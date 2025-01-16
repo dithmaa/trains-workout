@@ -123,6 +123,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     console.log("tg", tg);
     console.log("tg.initData", tg.initData);
     console.log("tg.initDataUnsafe", tg.initDataUnsafe);
+    console.log("initData", initData);
   }, [initData]);
 
   return (
