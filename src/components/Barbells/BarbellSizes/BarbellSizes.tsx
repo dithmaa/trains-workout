@@ -120,7 +120,8 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   }, [inputData]);
 
   useEffect(() => {
-    console.log(initData);
+    console.error(tg);
+    console.error(initData);
   }, [initData]);
 
   return (
