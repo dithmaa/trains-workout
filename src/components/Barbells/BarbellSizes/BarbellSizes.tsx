@@ -117,6 +117,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
       handleUpdate();
     }
+    console.log("Danya", inputData);
   }, [inputData]);
 
   useEffect(() => {
