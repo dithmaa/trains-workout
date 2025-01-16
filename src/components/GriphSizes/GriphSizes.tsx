@@ -131,7 +131,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
   // Вызов handleGetUpdatedEquipments при первом рендере компонента
   useEffect(() => {
     handleGetUpdatedEquipments(); // Вызов при монтировании компонента
-  }, []); // Пустой массив зависимостей для первого рендера
+  }, [initData]); // Пустой массив зависимостей для первого рендера
 
   // Вызов handleUpdate, когда inputData изменяется
   useEffect(() => {

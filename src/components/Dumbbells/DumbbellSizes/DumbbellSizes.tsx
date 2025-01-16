@@ -122,7 +122,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
 
   useEffect(() => {
     handleGetUpdatedEquipments();
-  }, []);
+  }, [initData]);
 
   useEffect(() => {
     if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {

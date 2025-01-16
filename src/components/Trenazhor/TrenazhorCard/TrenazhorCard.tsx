@@ -118,7 +118,7 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
   // Вызов handleGetUpdatedEquipments при первом рендере компонента
   useEffect(() => {
     handleGetUpdatedEquipments();
-  }, []); // Пустой массив зависимостей для первого рендера
+  }, [initData]); // Пустой массив зависимостей для первого рендера
 
   // Вызов handleUpdate, когда inputData изменяется
   useEffect(() => {
