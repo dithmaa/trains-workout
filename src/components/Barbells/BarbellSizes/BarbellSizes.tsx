@@ -37,34 +37,38 @@ interface InputData {
     option_id: number;
   }[];
 }
+
+// Тип для полученного ответа
+interface Choice {
+  option_id: number;
+}
+
 const tg = window.Telegram.WebApp;
 
 export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
-  const [initData, setInitData] = useState();
-  useEffect(() => {
-    // Проверка, что WebApp инициализирован
-    if (!initData && tg?.initData) {
-      tg.ready();
+  const [initData, setInitData] = useState<string | undefined>(undefined);
+  const [updateEquipments] = useUpdateEquipmentsMutation();
+  const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
+  const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
+  const [inputData, setInputData] = useState<InputData>({
+    init: undefined,
+    equipments: [],
+  });
 
-      // Получение userId
+  // Установка initData только один раз
+  useEffect(() => {
+    if (!initData) {
+      tg.ready();
       setInitData(tg?.initData);
     }
   }, [initData]);
 
-  const [updateEquipments] = useUpdateEquipmentsMutation();
-  const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
-
-  const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
-  const [inputData, setInputData] = useState<InputData>({
-    init: initData,
-    equipments: [],
-  });
-
+  // Функция для обновления выбранных размеров
   const handleUpdate = async () => {
     try {
       const response = await updateEquipments(inputData).unwrap();
       if (response?.choices) {
-        const indices = response.choices.map((choice: { option_id: number }) =>
+        const indices = response.choices.map((choice: Choice) =>
           details[0].options.findIndex(
             (option) => option.id === choice.option_id
           )
@@ -76,58 +80,61 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     }
   };
 
+  // Функция для получения данных о выбранных размерах
   const handleGetUpdatedEquipments = async () => {
-    console.log("{init: initData}", {
-      init: initData,
-    });
+    if (!initData) return; // Не вызываем до готовности initData
 
     try {
-      const response = await getUpdatedEquipments({
-        init: initData,
-      }).unwrap();
-
+      const response = await getUpdatedEquipments({ init: initData }).unwrap();
       if (response?.choices) {
-        const indices = response.choices.map((choice: { option_id: number }) =>
+        const indices = response.choices.map((choice: Choice) =>
           details[0].options.findIndex(
             (option) => option.id === choice.option_id
           )
         );
-        setActiveIndexes(indices);
+        if (JSON.stringify(indices) !== JSON.stringify(activeIndexes)) {
+          setActiveIndexes(indices);
+        }
       }
     } catch (error) {
       console.error("Get updated equipment error:", error);
     }
   };
 
+  // Обработчик клика для выбора/снятия выбора размера
   const handleClick = (index: number, size: Size) => {
     setActiveIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
 
     setInputData({
-      init: initData, // айдишник остается неизменным
+      init: initData,
       equipments: [
         {
-          equipment_id: size.equipment_id, // Идентификатор оборудования
-          detail_id: size.detail_id, // Идентификатор детали
-          option_id: size.id, // ID выбранного размера (например, 5 кг)
+          equipment_id: size.equipment_id,
+          detail_id: size.detail_id,
+          option_id: size.id,
         },
       ],
     });
   };
 
+  // Получение обновленных размеров при изменении initData
   useEffect(() => {
-    console.log("handleGetUpdatedEquipments...");
-    console.log("handleGetUpdatedEquipments initData", initData);
-
-    handleGetUpdatedEquipments();
+    if (initData) {
+      handleGetUpdatedEquipments();
+    }
   }, [initData]);
 
+  // Обновление размеров при изменении inputData
   useEffect(() => {
-    if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
+    if (
+      inputData.equipments.length > 0 &&
+      inputData.equipments[0].option_id &&
+      inputData.init
+    ) {
       handleUpdate();
     }
-    console.log("Danya", inputData);
   }, [inputData]);
 
   return (
@@ -140,7 +147,7 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
               className={`${styles.root__item} ${
                 activeIndexes.includes(index) ? "active" : ""
               }`}
-              onClick={() => handleClick(index, weight)} // Передаем weight в обработчик
+              onClick={() => handleClick(index, weight)}
             ></div>
             {weight.value}
           </div>
