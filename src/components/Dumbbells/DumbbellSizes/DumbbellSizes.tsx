@@ -35,6 +35,12 @@ interface InputData {
   }[];
 }
 
+interface Choice {
+  equipment_id: number;
+  detail_id: number;
+  option_id: number;
+}
+
 export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
   const [initData, setInitData] = useState<string | undefined>(undefined);
   const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
@@ -55,7 +61,7 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
     try {
       const response = await getUpdatedEquipments({ init: initData }).unwrap();
       if (response?.choices) {
-        const indices = response.choices.map((choice) =>
+        const indices = response.choices.map((choice: Choice) =>
           details[0].options.findIndex(
             (option) => option.id === choice.option_id
           )
