@@ -52,12 +52,14 @@ const tg = window.Telegram.WebApp;
 export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
   const [initData, setInitData] = useState();
   useEffect(() => {
-    // Проверка, что WebApp инициализирован
-    tg.ready();
+    if (!initData && tg?.initData) {
+      // Проверка, что WebApp инициализирован
+      tg.ready();
 
-    // Получение userId
-    setInitData(tg?.initData);
-  });
+      // Получение userId
+      setInitData(tg?.initData);
+    }
+  }, [initData]);
 
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();

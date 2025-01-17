@@ -54,12 +54,14 @@ const tg = window.Telegram.WebApp;
 export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
   const [initData, setInitData] = useState();
   useEffect(() => {
-    // Проверка, что WebApp инициализирован
-    tg.ready();
+    if (!initData && tg?.initData) {
+      // Проверка, что WebApp инициализирован
+      tg.ready();
 
-    // Получение userId
-    setInitData(tg?.initData);
-  });
+      // Получение userId
+      setInitData(tg?.initData);
+    }
+  }, [initData]);
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 

@@ -43,11 +43,13 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
   const [initData, setInitData] = useState();
   useEffect(() => {
     // Проверка, что WebApp инициализирован
-    tg.ready();
+    if (!initData && tg?.initData) {
+      tg.ready();
 
-    // Получение userId
-    setInitData(tg?.initData);
-  });
+      // Получение userId
+      setInitData(tg?.initData);
+    }
+  }, [initData]);
 
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
