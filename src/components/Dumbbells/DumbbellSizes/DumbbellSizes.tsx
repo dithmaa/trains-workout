@@ -5,7 +5,7 @@ import {
   useUpdateEquipmentsMutation,
 } from "../../../store/equipmentsApi";
 
-// Тип для вложенного объекта options
+// Типы данных
 interface Size {
   id: number;
   equipment_id: number;
@@ -13,22 +13,19 @@ interface Size {
   value: string;
 }
 
-// Тип для основного объекта details
 interface Detail {
   id: number;
   equipment_id: number;
-  title_photo: string | null; // Если фото отсутствует, оно null
+  title_photo: string | null;
   name: string;
   type: string;
-  options: Size[]; // Вложенный массив с типом Size
+  options: Size[];
 }
 
-// Тип для пропсов компонента
 interface DumbbellSizesProps {
-  details: Detail[]; // Массив объектов с типом Detail
+  details: Detail[];
 }
 
-// Тип для структуры inputData
 interface InputData {
   init: any;
   equipments: {
@@ -38,62 +35,27 @@ interface InputData {
   }[];
 }
 
-// Тип для полученного ответа
-interface ChoiceResponse {
-  choices: Array<{
-    equipment_id: number;
-    detail_id: number;
-    option_id: number;
-  }>;
-}
-
-const tg = window.Telegram.WebApp;
-
 export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
-  const [initData, setInitData] = useState();
-  useEffect(() => {
-    if (!initData && tg?.initData) {
-      // Проверка, что WebApp инициализирован
-      tg.ready();
-
-      // Получение userId
-      setInitData(tg?.initData);
-    }
-  }, [initData]);
-
+  const [initData, setInitData] = useState<string | undefined>(undefined);
+  const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
+  const [inputData, setInputData] = useState<InputData | null>(null);
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
-  const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
-  const [inputData, setInputData] = useState<InputData>({
-    init: initData,
-    equipments: [],
-  });
-
-  const handleUpdate = async () => {
-    try {
-      const response = await updateEquipments(inputData).unwrap();
-      if (response?.choices) {
-        const indices = response.choices.map((choice: { option_id: number }) =>
-          details[0].options.findIndex(
-            (option) => option.id === choice.option_id
-          )
-        );
-        setActiveIndexes(indices);
-      }
-    } catch (error) {
-      console.error("Update error:", error);
+  // Установка initData только один раз
+  useEffect(() => {
+    if (!initData && window.Telegram?.WebApp?.initData) {
+      window.Telegram.WebApp.ready();
+      setInitData(window.Telegram.WebApp.initData);
     }
-  };
+  }, [initData]);
 
+  // Обновление списка активных индексов при загрузке данных
   const handleGetUpdatedEquipments = async () => {
     try {
-      const response = await getUpdatedEquipments({
-        init: initData,
-      }).unwrap();
-
+      const response = await getUpdatedEquipments({ init: initData }).unwrap();
       if (response?.choices) {
-        const indices = response.choices.map((choice: { option_id: number }) =>
+        const indices = response.choices.map((choice) =>
           details[0].options.findIndex(
             (option) => option.id === choice.option_id
           )
@@ -101,36 +63,52 @@ export const DumbbellSizes: React.FC<DumbbellSizesProps> = ({ details }) => {
         setActiveIndexes(indices);
       }
     } catch (error) {
-      console.error("Get updated equipment error:", error);
+      console.error("Error fetching updated equipment:", error);
     }
   };
 
+  // Обновление активных индексов при изменении initData
+  useEffect(() => {
+    if (initData) {
+      handleGetUpdatedEquipments();
+    }
+  }, [initData]);
+
+  // Обновление данных на сервере
+  const handleUpdate = async () => {
+    if (inputData) {
+      try {
+        await updateEquipments(inputData).unwrap();
+      } catch (error) {
+        console.error("Error updating equipment:", error);
+      }
+    }
+  };
+
+  // Обновление при изменении inputData
+  useEffect(() => {
+    if (inputData) {
+      handleUpdate();
+    }
+  }, [inputData]);
+
+  // Обработчик клика
   const handleClick = (index: number, size: Size) => {
     setActiveIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
 
     setInputData({
-      init: initData, // айдишник остается неизменным
+      init: initData,
       equipments: [
         {
-          equipment_id: size.equipment_id, // Идентификатор оборудования
-          detail_id: size.detail_id, // Идентификатор детали
-          option_id: size.id, // ID выбранного размера (например, 5 кг)
+          equipment_id: size.equipment_id,
+          detail_id: size.detail_id,
+          option_id: size.id,
         },
       ],
     });
   };
-
-  useEffect(() => {
-    handleGetUpdatedEquipments();
-  }, [initData]);
-
-  useEffect(() => {
-    if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
-      handleUpdate();
-    }
-  }, [inputData]);
 
   return (
     <div className={styles.root}>
