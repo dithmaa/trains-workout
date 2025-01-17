@@ -130,13 +130,6 @@ export const BarbellSizes: React.FC<BarbellSizesProps> = ({ details }) => {
     console.log("Danya", inputData);
   }, [inputData]);
 
-  useEffect(() => {
-    console.log("tg", tg);
-    console.log("tg.initData", tg.initData);
-    console.log("tg.initDataUnsafe", tg.initDataUnsafe);
-    console.log("initData", initData);
-  }, [initData]);
-
   return (
     <div className={styles.root}>
       {details && <h2 className="main-title">{details[0].name}</h2>}
