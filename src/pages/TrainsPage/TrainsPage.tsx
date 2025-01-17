@@ -6,18 +6,22 @@ const tg = window.Telegram.WebApp;
 
 export const TrainsPage = () => {
   const [initData, setInitData] = useState();
-  useEffect(() => {
-    // Проверка, что WebApp инициализирован
-    tg.ready();
-
-    // Получение userId
-    setInitData(tg?.initData);
-  });
 
   const [createTraining, { isLoading }] = useCreateTrainingMutation();
   const [trainings, setTrainings] = useState([]);
 
+  useEffect(() => {
+    tg.ready();
+
+    // Устанавливаем initData только если оно ещё не установлено
+    if (!initData && tg?.initData) {
+      setInitData(tg.initData);
+    }
+  }, [initData]);
+
   const handleCreateTraining = async () => {
+    if (!initData) return; // Предотвращаем лишние вызовы
+
     try {
       const result = await createTraining({ init: initData }).unwrap();
       setTrainings(result.trainings);
@@ -25,6 +29,7 @@ export const TrainsPage = () => {
       console.error("Error:", err);
     }
   };
+
   useEffect(() => {
     handleCreateTraining();
   }, [initData]);
