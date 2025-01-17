@@ -7,7 +7,7 @@ import {
   useUpdateEquipmentsMutation,
 } from "../../store/equipmentsApi";
 
-// Тип для вложенного объекта options
+// Типы данных
 interface Size {
   id: number;
   equipment_id: number;
@@ -15,24 +15,21 @@ interface Size {
   value: string;
 }
 
-// Тип для основного объекта details
 interface Detail {
   id: number;
   equipment_id: number;
-  title_photo: string | null; // Если фото отсутствует, оно null
+  title_photo: string | null;
   name: string;
   type: string;
-  options: Size[]; // Вложенный массив с типом Size
+  options: Size[];
 }
 
-// Тип для пропсов компонента
 interface GriphSizesProps {
-  details: Detail[]; // Массив объектов с типом Detail
+  details: Detail[];
 }
 
-// Тип для структуры inputData
 interface InputData {
-  init: any;
+  init: string | undefined;
   equipments: {
     equipment_id: number;
     detail_id: number;
@@ -40,45 +37,60 @@ interface InputData {
   }[];
 }
 
-// Тип для полученного ответа
-interface ChoiceResponse {
-  choices: Array<{
-    equipment_id: number;
-    detail_id: number;
-    option_id: number;
-  }>;
+interface Choice {
+  equipment_id: number;
+  detail_id: number;
+  option_id: number;
 }
 
 const tg = window.Telegram.WebApp;
 
 export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
-  const [initData, setInitData] = useState();
-  useEffect(() => {
-    if (!initData && tg?.initData) {
-      // Проверка, что WebApp инициализирован
-      tg.ready();
+  const [initData, setInitData] = useState<string | undefined>(undefined);
+  const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
+  const [inputData, setInputData] = useState<InputData>({
+    init: undefined,
+    equipments: [],
+  });
 
-      // Получение userId
-      setInitData(tg?.initData);
-    }
-  }, [initData]);
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
 
-  // Стейт для хранения активных индексов
-  const [activeIndexes, setActiveIndexes] = useState<number[]>([]);
-  const [inputData, setInputData] = useState<InputData>({
-    init: initData, // Идентификатор
-    equipments: [], // Массив с выбранными опциями
-  });
+  // Устанавливаем initData только один раз
+  useEffect(() => {
+    if (!initData) {
+      tg.ready();
+      setInitData(tg?.initData);
+    }
+  }, [initData]);
 
+  // Получаем обновленные данные о выбранных опциях
+  const handleGetUpdatedEquipments = async () => {
+    if (!initData) return;
+
+    try {
+      const response = await getUpdatedEquipments({ init: initData }).unwrap();
+      if (response?.choices) {
+        const indices = response.choices.map((choice: Choice) =>
+          details[1].options.findIndex(
+            (option) => option.id === choice.option_id
+          )
+        );
+        if (JSON.stringify(indices) !== JSON.stringify(activeIndexes)) {
+          setActiveIndexes(indices);
+        }
+      }
+    } catch (error) {
+      console.error("Get updated equipment error:", error);
+    }
+  };
+
+  // Обновляем данные на сервере
   const handleUpdate = async () => {
     try {
       const response = await updateEquipments(inputData).unwrap();
-
-      // Обновляем активные индексы на основе полученных данных
       if (response?.choices) {
-        const indices = response.choices.map((choice: { option_id: number }) =>
+        const indices = response.choices.map((choice: Choice) =>
           details[1].options.findIndex(
             (option) => option.id === choice.option_id
           )
@@ -90,57 +102,35 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
     }
   };
 
-  const handleGetUpdatedEquipments = async () => {
-    try {
-      // Отправляем только init с айдишником
-      const response = await getUpdatedEquipments({
-        init: initData,
-      }).unwrap();
-
-      // Обновляем активные индексы на основе полученных данных
-      if (response?.choices) {
-        const indices = response.choices.map((choice: { option_id: number }) =>
-          details[1].options.findIndex(
-            (option) => option.id === choice.option_id
-          )
-        );
-        setActiveIndexes(indices);
-      }
-    } catch (error) {
-      console.error("Get updated equipment error:", error);
-    }
-  };
-
+  // Обработчик кликов
   const handleClick = (index: number, size: Size) => {
-    // Обновляем активные индексы
     setActiveIndexes((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
 
-    // Обновляем данные для отправки в API
     setInputData({
-      init: initData, // айдишник остается неизменным
+      init: initData,
       equipments: [
         {
-          equipment_id: size.equipment_id, // Идентификатор оборудования
-          detail_id: size.detail_id, // Идентификатор детали
-          option_id: size.id, // ID выбранного размера
+          equipment_id: size.equipment_id,
+          detail_id: size.detail_id,
+          option_id: size.id,
         },
       ],
     });
   };
 
-  // Вызов handleGetUpdatedEquipments при первом рендере компонента
+  // Получаем обновления при изменении initData
   useEffect(() => {
-    handleGetUpdatedEquipments(); // Вызов при монтировании компонента
-  }, [initData]); // Пустой массив зависимостей для первого рендера
+    handleGetUpdatedEquipments();
+  }, [initData]);
 
-  // Вызов handleUpdate, когда inputData изменяется
+  // Отправляем данные при изменении inputData
   useEffect(() => {
     if (inputData.equipments.length > 0 && inputData.equipments[0].option_id) {
       handleUpdate();
     }
-  }, [inputData]); // Обновляем, когда inputData изменяется
+  }, [inputData]);
 
   return (
     <div className={styles.root}>
@@ -154,7 +144,7 @@ export const GriphSizes: React.FC<GriphSizesProps> = ({ details }) => {
               className={`${styles.root__item} ${
                 isActive ? styles.root_active : ""
               }`}
-              onClick={() => handleClick(index, item)} // Передаем item в обработчик
+              onClick={() => handleClick(index, item)}
             >
               <span>{item.value}</span>
               {isActive ? <GreenGriph /> : <GrayGriph />}
