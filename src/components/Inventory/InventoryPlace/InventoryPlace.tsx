@@ -30,25 +30,24 @@ export const InventoryPlace: React.FC<InventoryProps> = ({ items }) => {
   const [activeItems, setActiveItems] = useState<number[]>([]); // Состояние активных элементов
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
   const [updateEquipments] = useUpdateEquipmentsMutation();
-  useEffect(() => {
-    const fetchUpdatedEquipments = async () => {
-      try {
-        const response = await getUpdatedEquipments({
-          init: initData,
-        }).unwrap();
-        if (response?.choices) {
-          const activeIds = response.choices.map(
-            (choice: { detail_id: number }) => choice.detail_id
-          );
-          setActiveItems(activeIds);
-        }
-      } catch (error) {
-        console.error("Error fetching inventory data:", error);
+  const fetchUpdatedEquipments = async () => {
+    try {
+      const response = await getUpdatedEquipments({
+        init: initData,
+      }).unwrap();
+      if (response?.choices) {
+        const activeIds = response.choices.map(
+          (choice: { detail_id: number }) => choice.detail_id
+        );
+        setActiveItems(activeIds);
       }
-    };
-
+    } catch (error) {
+      console.error("Error fetching inventory data:", error);
+    }
+  };
+  useEffect(() => {
     fetchUpdatedEquipments();
-  }, []);
+  }, [initData]);
 
   const handleToggleItem = async (id: number) => {
     setActiveItems((prev) =>
