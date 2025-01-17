@@ -38,12 +38,12 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
 }) => {
   const [initData, setInitData] = useState();
   useEffect(() => {
-    // Проверка, что WebApp инициализирован
-    tg.ready();
-
-    // Получение userId
-    setInitData(tg?.initData);
-  });
+    // Проверяем, инициализирован ли WebApp и initData
+    if (!initData && tg?.initData) {
+      tg.ready();
+      setInitData(tg.initData);
+    }
+  }, [initData]); // Зависимость только от initData
 
   const [updateEquipments] = useUpdateEquipmentsMutation();
   const [getUpdatedEquipments] = useGetUpdatedEquipmentsMutation();
@@ -92,33 +92,41 @@ export const TrenazhorCard: React.FC<TrenazhorCardProps> = ({
     }
   };
 
-  // Функция для получения данных при первом рендере
-  const handleGetUpdatedEquipments = async () => {
-    try {
-      // Отправляем только init с айдишником
-      const response = await getUpdatedEquipments({
-        init: initData,
-      }).unwrap();
-
-      // Обрабатываем ответ от API, например, обновляем активные индексы
-      if (response?.choices) {
-        const updatedActiveSizes = response.choices.map(
-          (choice: { option_id: number }) =>
-            sizes.findIndex((size) => size.id === choice.option_id)
-        );
-        setActiveSizes(
-          activeSizes.map((_, index) => updatedActiveSizes.includes(index))
-        );
-      }
-    } catch (error) {
-      console.error("Get updated equipment error:", error);
-    }
-  };
-
-  // Вызов handleGetUpdatedEquipments при первом рендере компонента
   useEffect(() => {
+    // Проверяем, инициализирован ли WebApp и initData
+    if (!initData && tg?.initData) {
+      tg.ready();
+      setInitData(tg.initData);
+    }
+  }, [initData]); // Зависимость только от initData
+
+  useEffect(() => {
+    if (!initData) return; // Ждём, пока initData будет установлен
+
+    const handleGetUpdatedEquipments = async () => {
+      try {
+        const response = await getUpdatedEquipments({
+          init: initData,
+        }).unwrap();
+
+        if (response?.choices) {
+          const updatedActiveSizes = response.choices.map(
+            (choice: { option_id: number }) =>
+              sizes.findIndex((size) => size.id === choice.option_id)
+          );
+
+          // Обновляем активные размеры
+          setActiveSizes(
+            activeSizes.map((_, index) => updatedActiveSizes.includes(index))
+          );
+        }
+      } catch (error) {
+        console.error("Get updated equipment error:", error);
+      }
+    };
+
     handleGetUpdatedEquipments();
-  }, [initData]); // Пустой массив зависимостей для первого рендера
+  }, [initData, sizes, getUpdatedEquipments]); // Добавлены необходимые зависимости
 
   // Вызов handleUpdate, когда inputData изменяется
   useEffect(() => {
