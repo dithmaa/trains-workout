@@ -27,7 +27,7 @@ export const TrainsPage = () => {
   };
   useEffect(() => {
     handleCreateTraining();
-  }, []);
+  }, [initData]);
 
   if (isLoading)
     return (
