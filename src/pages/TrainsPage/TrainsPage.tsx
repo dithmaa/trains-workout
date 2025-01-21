@@ -24,6 +24,7 @@ export const TrainsPage = () => {
 
     try {
       const result = await createTraining({ init: initData }).unwrap();
+      console.log("result handleCreateTraining", result);
       setTrainings(result.trainings);
     } catch (err) {
       console.error("Error:", err);
