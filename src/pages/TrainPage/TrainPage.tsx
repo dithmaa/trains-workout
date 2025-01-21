@@ -75,9 +75,10 @@ export const TrainPage: React.FC<TrainPageProps> = () => {
     }
   };
   useEffect(() => {
-    handleCreateExercizes();
-    handleCreateTraining();
-    console.log("REQUEST");
+    if (initData) {
+      handleCreateExercizes();
+      handleCreateTraining();
+    }
   }, [initData]);
 
   if (isLoading) return <Preloader />;
