@@ -14,7 +14,7 @@ export const MorePageMenu = () => {
         </Link>
       </li>
       <li className={styles.root__item}>
-        <a href="#">
+        <a href="https://t.me/FitGuid_bot?start=support-manager">
           <span>
             <span className={styles.root__icon}>👨‍💻</span>
             <span>Написать в поддержку</span>
@@ -24,7 +24,7 @@ export const MorePageMenu = () => {
         </a>
       </li>
       <li className={styles.root__item}>
-        <a href="#">
+        <a href="https://t.me/FitGuid_bot?start=support-trainer">
           <span>
             <span className={styles.root__icon}>👋</span>
             <span>Написать тренеру</span>
